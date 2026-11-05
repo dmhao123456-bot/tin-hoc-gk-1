@@ -34,6 +34,10 @@
         </span>
         <h1 class="text-2xl font-extrabold tracking-tight">ÔN TẬP TIN HỌC 12</h1>
         <p class="text-teal-100 text-xs mt-1">Sách Kết nối tri thức • AI & Mạng máy tính</p>
+        <div class="mt-4 pt-3 border-t border-white/20 text-xs text-teal-50 leading-relaxed font-medium">
+          <p>Cảm ơn <strong class="text-white">Đoàn Hoàng Hải</strong> đã làm file trắc nghiệm.</p>
+          <p>Liên lạc với người làm để sửa nếu đáp án sai.</p>
+        </div>
       </div>
 
       <!-- Nội dung cài đặt -->
@@ -300,12 +304,12 @@
     const SVG_IMAGES = {
       b3_c2_wap: `
         <div class="my-4 flex justify-center">
-          <img src="image_b5e6d2.png" alt="Giao diện tìm các WAP ở gần" class="max-w-full h-auto rounded-lg shadow-sm border border-slate-200">
+          <img src="https://i.postimg.cc/WbpmPXbq/1793850197360-54915125164400551-9030134222129410101-37a51a9183699622d41bc77ba01bdf1c.jpg" alt="Giao diện tìm các WAP ở gần" class="max-w-xs sm:max-w-md max-h-60 sm:max-h-72 object-contain w-auto rounded-lg shadow-sm border border-slate-200">
         </div>
       `,
       b3_c5_rj45: `
         <div class="my-4 flex justify-center">
-          <img src="image_b5e428.jpg" alt="Giắc cắm và cổng RJ45" class="max-w-full sm:max-w-md h-auto rounded-lg shadow-sm border border-slate-200">
+          <img src="https://i.postimg.cc/ydXRMSMh/1793850205784-54915125164400551-9030134222129410101-9beeea33820d489a151a063046cc124c.jpg" alt="Giắc cắm và cổng RJ45" class="max-w-full sm:max-w-md h-auto rounded-lg shadow-sm border border-slate-200">
         </div>
       `
     };
@@ -1095,7 +1099,8 @@
       // ================= BÀI 5 =================
       {
         id: "tin_b5_mcq_1", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
-        question: "Câu 1. Quy trình 4 bước cắm cáp Ethernet, kiểm tra cổng và đèn LED nhằm mục đích:",
+        quote: "Một kĩ thuật viên giới thiệu quy trình thực hiện công việc liên quan đến lắp đặt mạng bao gồm các bước sau đây:\nBước 1: Chuẩn bị cáp mạng và cổng Ethernet trên máy tính.\nBước 2: Kết nối cáp mạng vào cổng Ethernet trên máy tính, đầu còn lại cắm vào cổng trên bộ định tuyến hoặc bộ chuyển mạch.\nBước 3: Đảm bảo cáp mạng được cắm chặt vào cả hai thiết bị và đèn LED trên cổng Ethernet của máy tính sáng lên.\nBước 4: Trên máy tính, thực hiện kiểm tra kết nối.",
+        question: "Câu 1. Thực hiện quy trình trên và cho biết công việc được thực hiện có mục đích gì?",
         options: [
           { text: "Kết nối máy tính với mạng qua cáp Ethernet.", isCorrect: true },
           { text: "Cài đặt một trình duyệt web.", isCorrect: false },
@@ -1135,7 +1140,8 @@
       },
       {
         id: "tin_b5_mcq_5", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
-        question: "Câu 5. Tên gọi phù hợp nhất cho quy trình dán trên tường phòng thực hành để dùng máy in:",
+        quote: "Trong phòng thực hành Tin học giáo viên có dán một tờ hướng dẫn trên tường với nội dung như sau:\nKết nối máy tính vào mạng phù hợp → Tìm máy in trong mạng → Thêm máy in → Cài đặt driver máy in → Kiểm tra kết nối và in thử.",
+        question: "Câu 5. Các bước trên cần được bổ sung tên gọi của quy trình để dễ dàng cho học sinh theo dõi và thực hiện theo khi cần. Phương án nào sau đây là phù hợp để đặt tên?",
         options: [
           { text: "Hướng dẫn cài đặt phần mềm in trên máy tính và thiết lập máy in.", isCorrect: false },
           { text: "Hướng dẫn kết nối và sử dụng máy in đã được chia sẻ trong mạng.", isCorrect: true },
@@ -1487,7 +1493,7 @@
       }
     ];
 
-    // CÁC HÀM TIỆN ÍCH VÀ XỬ LÝ SỰ KIỆN GIAO DIỆN (GIỮ NGUYÊN TỪ BẢN TRƯỚC)
+    // CÁC HÀM TIỆN ÍCH VÀ XỬ LÝ SỰ KIỆN GIAO DIỆN (ĐÃ LOẠI BỎ BẢN VÁ LỖI HIỆU NĂNG - QUAY LẠI TRẠNG THÁI GỐC)
     // BIẾN TRẠNG THÁI ỨNG DỤNG
     let isShuffle = false;
     let isStudyMode = false;
@@ -1850,54 +1856,34 @@
       window.scrollTo({ top: 100, behavior: 'smooth' });
     };
 
-    // XỬ LÝ CHỌN CÂU TRẮC NGHIỆM ĐƠN (Đã fix render tối ưu)
+    // XỬ LÝ CHỌN CÂU TRẮC NGHIỆM ĐƠN 
     window.selectSingleOption = function(qId, optIdx) {
       if (isExamSubmitted && !isStudyMode) return;
       userAnswers[qId] = optIdx;
       updateProgress();
-      
-      const card = document.getElementById(`card_${qId}`);
-      if (!card) return;
-
-      const labels = card.querySelectorAll('label');
-      labels.forEach((lbl, idx) => {
-        const input = lbl.querySelector('input');
-        if (idx === optIdx) {
-          input.checked = true;
-          lbl.className = "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-teal-500 bg-teal-50 ring-2 ring-teal-300 cursor-pointer transition select-none";
-          lbl.querySelector('.text-xs').className = "text-xs sm:text-sm text-teal-900 font-bold leading-relaxed w-full";
-        } else {
-          input.checked = false;
-          lbl.className = "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 cursor-pointer transition select-none";
-          lbl.querySelector('.text-xs').className = "text-xs sm:text-sm text-slate-700 font-medium leading-relaxed w-full";
-        }
-      });
-      
-      if (isStudyMode) {
-          checkSingleAnswer(qId);
-      }
+      renderAllQuestions();
     };
 
-    // XỬ LÝ CHỌN CÂU ĐÚNG / SAI (Đã fix render tối ưu)
+    // XỬ LÝ CHỌN CÂU ĐÚNG / SAI 
     window.selectTFOption = function(qId, label, val) {
       if (isExamSubmitted && !isStudyMode) return;
       userAnswers[`${qId}_${label}`] = val;
       updateProgress();
 
-      const row = document.getElementById(`row_${qId}_${label}`);
-      if (row) {
-        const btns = row.querySelectorAll('button');
-        if (val === true) {
-          btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
-          btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
-        } else {
-          btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
-          btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
+      if (!isExamSubmitted && !isStudyMode) {
+        const row = document.getElementById(`row_${qId}_${label}`);
+        if (row) {
+          const btns = row.querySelectorAll('button');
+          if (val === true) {
+            btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
+            btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+          } else {
+            btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+            btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
+          }
         }
-      }
-      if (isStudyMode) {
-          // Re-render the whole question to show correct/incorrect feedback
-          renderAllQuestions();
+      } else {
+        renderAllQuestions();
       }
     };
 
