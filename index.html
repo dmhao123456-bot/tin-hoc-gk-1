@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ôn Luyện Tin Học 12 - Giữa Kì</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- ================= MÀN HÌNH 1: CẤU HÌNH & THIẾT LẬP ================= -->
+  <div id="startScreen" class="min-h-screen flex flex-col justify-center items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <!-- Banner Header -->
+      <div class="bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 p-6 text-white text-center">
+        <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+          Đề cương ôn tập
+        </span>
+        <h1 class="text-2xl font-extrabold tracking-tight">ÔN TẬP TIN HỌC 12</h1>
+        <p class="text-teal-100 text-xs mt-1">Sách Kết nối tri thức • AI & Mạng máy tính</p>
+      </div>
+
+      <!-- Nội dung cài đặt -->
+      <div class="p-6 space-y-5">
+        <!-- 1. Chọn bài học -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            1. Chọn bài học ôn tập:
+          </label>
+          <div class="relative">
+            <button type="button" id="lessonDropdownBtn" class="w-full flex items-center justify-between p-3.5 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-xl text-left transition shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+              <div class="flex items-center gap-3">
+                <span id="selectedLessonIcon" class="text-xl">📚</span>
+                <div>
+                  <div id="selectedLessonTitle" class="text-sm font-bold text-slate-900">Toàn bộ đề cương (Từ Bài 1 đến Bài 6)</div>
+                  <div id="selectedLessonDesc" class="text-[11px] text-slate-500">Bao gồm cả trắc nghiệm và Đúng/Sai</div>
+                </div>
+              </div>
+              <svg id="dropdownArrow" class="w-5 h-5 text-slate-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Menu xổ xuống -->
+            <div id="lessonDropdownMenu" class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl z-30 overflow-hidden divide-y divide-slate-100 max-h-72 overflow-y-auto custom-scroll">
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between bg-teal-50/60" data-value="all" data-icon="📚" data-title="Toàn bộ đề cương (Bài 1 - 6)" data-desc="Trắc nghiệm & Đúng/Sai tổng hợp">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">📚</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Toàn bộ đề cương</div>
+                    <div class="text-xs text-slate-500">Bài 1 đến Bài 6</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b1" data-icon="🤖" data-title="Bài 1: Làm quen với Trí tuệ nhân tạo" data-desc="25 câu TN + 5 câu Đ/S">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🤖</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 1: Làm quen với Trí tuệ nhân tạo</div>
+                    <div class="text-xs text-slate-500">Khái niệm, đặc trưng, phân loại AI</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b2" data-icon="🔬" data-title="Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống" data-desc="11 câu TN + 5 câu Đ/S">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🔬</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 2: AI trong Khoa học & Đời sống</div>
+                    <div class="text-xs text-slate-500">Ứng dụng, nguy cơ và cảnh báo</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b3" data-icon="🖲️" data-title="Bài 3: Một số thiết bị mạng thông dụng" data-desc="10 câu TN + 5 câu Đ/S">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🖲️</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 3: Thiết bị mạng thông dụng</div>
+                    <div class="text-xs text-slate-500">Hub, Switch, Router, Modem, WAP</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b4" data-icon="🌐" data-title="Bài 4: Giao thức mạng" data-desc="11 câu TN + 5 câu Đ/S">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🌐</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 4: Giao thức mạng</div>
+                    <div class="text-xs text-slate-500">TCP/IP, định tuyến, địa chỉ IP/MAC</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+              
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b5" data-icon="📁" data-title="Bài 5: Thực hành chia sẻ tài nguyên" data-desc="10 câu TN">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">📁</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 5: Chia sẻ tài nguyên trên mạng</div>
+                    <div class="text-xs text-slate-500">Chia sẻ thư mục, máy in (Chỉ có TN)</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+              
+              <div class="lesson-option p-3 cursor-pointer hover:bg-teal-50 transition flex items-center justify-between" data-value="b6" data-icon="💬" data-title="Bài 6: Giao tiếp & Ứng xử trong không gian mạng" data-desc="24 câu TN + 5 câu Đ/S">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">💬</span>
+                  <div>
+                    <div class="text-sm font-bold text-slate-900">Bài 6: Ứng xử trong không gian mạng</div>
+                    <div class="text-xs text-slate-500">Giao tiếp trực tuyến, đạo đức, pháp luật</div>
+                  </div>
+                </div>
+                <span class="text-teal-600 font-bold text-sm checkmark hidden">✓</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedLessonValue" value="all">
+        </div>
+
+        <!-- 2. Tùy chọn đảo câu hỏi -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            2. Chế độ thứ tự câu hỏi:
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="shuffleOption" value="no" checked class="w-4 h-4 text-teal-600 focus:ring-teal-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Không đảo câu</span>
+                Theo thứ tự đề cương
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="shuffleOption" value="yes" class="w-4 h-4 text-teal-600 focus:ring-teal-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Đảo câu hỏi</span>
+                Xáo trộn ngẫu nhiên
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Chế độ học tập -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+            3. Chế độ ôn luyện:
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="modeOption" value="exam" checked class="w-4 h-4 text-teal-600 focus:ring-teal-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Làm bài thi</span>
+                Nộp bài xong mới xem đáp án
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+              <input type="radio" name="modeOption" value="study" class="w-4 h-4 text-teal-600 focus:ring-teal-600 cursor-pointer">
+              <div class="text-xs font-semibold text-slate-700">
+                <span class="block font-bold text-slate-900">Xem đáp án sẵn</span>
+                Hiện sẵn đáp án chuẩn
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Hướng dẫn nhận diện màu -->
+        <div class="bg-teal-50 border border-teal-200 rounded-xl p-3 text-xs text-teal-900 flex items-start gap-2">
+          <span class="text-base">💡</span>
+          <div>
+            <strong>Màu sắc nhận diện:</strong>
+            <span class="inline-flex items-center text-teal-700 font-bold ml-1">● Đang chọn: Xanh</span> | 
+            <span class="inline-flex items-center text-emerald-600 font-bold ml-1">● Đúng: Xanh lá</span> | 
+            <span class="inline-flex items-center text-red-600 font-bold ml-1">● Sai: Đỏ</span>
+          </div>
+        </div>
+
+        <!-- Nút bấm bắt đầu -->
+        <button id="startExamBtn" class="w-full bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-teal-600/30 transition transform hover:-translate-y-0.5 text-base flex justify-center items-center gap-2">
+          <span>🚀</span> BẮT ĐẦU ÔN LUYỆN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MÀN HÌNH 2: GIAO DIỆN LÀM BÀI ================= -->
+  <div id="examScreen" class="hidden min-h-screen flex flex-col">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+      <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5 min-w-0 flex-1">
+          <button id="backToConfigBtn" class="shrink-0 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1 border border-slate-200 shadow-sm active:scale-95 transition">
+            <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden xs:inline sm:inline">Chọn lại bài</span>
+          </button>
+          <h2 id="currentLessonBadge" class="text-xs sm:text-sm font-bold text-teal-700 truncate flex-1 min-w-0 pl-1">
+            Đề Cương Tin Học 12
+          </h2>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <div class="bg-slate-100 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 text-[11px] sm:text-xs font-bold text-slate-700 whitespace-nowrap">
+            Tiến độ: <span id="progressCount" class="text-teal-600">0</span>/<span id="totalQuestionsCount">0</span>
+          </div>
+          <button id="resetCurrentExamBtn" class="text-[11px] sm:text-xs text-slate-600 hover:text-teal-600 border border-slate-200 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-slate-50 transition active:scale-95">
+            Làm lại
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="bg-white border-b border-slate-200 py-1.5 sm:py-2">
+      <div class="max-w-4xl mx-auto px-3 sm:px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 text-[11px] sm:text-xs text-slate-600">
+        <div class="truncate">
+          Trạng thái: <span id="examStatusText" class="font-bold text-slate-900">Đang làm bài...</span>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs overflow-x-auto">
+          <span class="flex items-center gap-0.5 font-bold text-teal-600 whitespace-nowrap">● Đang chọn: Xanh</span>
+          <span class="flex items-center gap-0.5 font-bold text-emerald-600 whitespace-nowrap">● Đúng: Xanh lá</span>
+          <span class="flex items-center gap-0.5 font-bold text-red-600 whitespace-nowrap">● Sai: Đỏ</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="postSubmitFilterBar" class="hidden bg-slate-100 border-b border-slate-200 py-2">
+      <div class="max-w-4xl mx-auto px-3 sm:px-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-1.5 w-full sm:w-auto">
+          <span class="font-bold text-slate-700 text-[11px] shrink-0">Lọc kết quả:</span>
+          <div class="inline-flex rounded-lg border border-slate-300 bg-white p-0.5 w-full sm:w-auto justify-between" role="group">
+            <button type="button" id="filterAllQuestionsBtn" onclick="setPostSubmitFilter('all')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md bg-slate-800 text-white transition text-[11px] sm:text-xs">
+              Tất cả (<span id="countFilterAll">0</span>)
+            </button>
+            <button type="button" id="filterWrongQuestionsBtn" onclick="setPostSubmitFilter('wrong')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md text-red-600 hover:bg-red-50 transition text-[11px] sm:text-xs">
+              ⚠️ Chỉ câu sai (<span id="countFilterWrong">0</span>)
+            </button>
+            <button type="button" id="filterCorrectQuestionsBtn" onclick="setPostSubmitFilter('correct')" class="flex-1 sm:flex-initial text-center px-2 sm:px-3 py-1 font-bold rounded-md text-emerald-600 hover:bg-emerald-50 transition text-[11px] sm:text-xs">
+              ✓ Chỉ câu đúng (<span id="countFilterCorrect">0</span>)
+            </button>
+          </div>
+        </div>
+        <div id="wrongNoticeText" class="text-[11px] sm:text-xs font-semibold text-slate-600"></div>
+      </div>
+    </div>
+
+    <main class="max-w-4xl w-full mx-auto p-3 sm:p-6 flex-1">
+      <div id="questionsContainer" class="space-y-4 sm:space-y-6">
+        <!-- Render danh sách câu hỏi -->
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-3 sticky bottom-0 z-20 shadow-lg">
+      <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+        <span class="text-xs text-slate-500 font-medium">Tin Học 12 - Ôn tập Giữa Kì</span>
+        <button id="submitExamBtn" class="bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow-md shadow-teal-600/30 transition">
+          Nộp bài & Xem đáp án
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal thông báo -->
+  <div id="appModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+      <div id="modalIconContainer" class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-teal-100 text-teal-600 font-bold text-xl">
+        !
+      </div>
+      <h3 id="modalTitle" class="text-lg font-extrabold text-center text-slate-900 mb-2">Thông báo</h3>
+      <div id="modalMessage" class="text-xs sm:text-sm text-slate-600 text-center leading-relaxed mb-6">
+        Nội dung thông báo
+      </div>
+      <div id="modalActions" class="flex gap-3 justify-center">
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC & DỮ LIỆU TIN HỌC 12 ================= -->
+  <script>
+    // --- KHAI BÁO HÌNH ẢNH DÙNG TRONG BÀI 3 ---
+    const SVG_IMAGES = {
+      b3_c2_wap: `
+        <div class="my-4 flex justify-center">
+          <img src="image_b5e6d2.png" alt="Giao diện tìm các WAP ở gần" class="max-w-full h-auto rounded-lg shadow-sm border border-slate-200">
+        </div>
+      `,
+      b3_c5_rj45: `
+        <div class="my-4 flex justify-center">
+          <img src="image_b5e428.jpg" alt="Giắc cắm và cổng RJ45" class="max-w-full sm:max-w-md h-auto rounded-lg shadow-sm border border-slate-200">
+        </div>
+      `
+    };
+
+    // --- DỮ LIỆU ĐỀ CƯƠNG TIN HỌC 12 (TỔNG HỢP CẢ T/F VÀ MCQ VÀO TỪNG BÀI) ---
+    const rawQuizData = [
+      // ================= BÀI 1 =================
+      {
+        id: "tin_b1_tf_1", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "tf",
+        question: "Câu 1: Về lịch sử và khái niệm Trí tuệ nhân tạo (AI), các phát biểu sau đây đúng hay sai?",
+        items: [
+          { label: "a", text: "Thuật ngữ AI chính thức ra đời tại Hội thảo Dartmouth năm 1956.", isCorrect: true },
+          { label: "b", text: "AI là khả năng của máy tính thực hiện các công việc mang tính trí tuệ của con người.", isCorrect: true },
+          { label: "c", text: "Phép thử Turing được dùng để đo lường tốc độ tính toán phần cứng của siêu máy tính.", isCorrect: false },
+          { label: "d", text: "Mọi hệ thống tự động hóa sử dụng rơ-le cơ điện trong các nhà máy đều là hệ thống AI.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_tf_2", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "tf",
+        question: "Câu 2: Các phát biểu về đặc trưng cơ bản của Trí tuệ nhân tạo (AI):",
+        items: [
+          { label: "a", text: "Đặc trưng hiểu ngôn ngữ của AI cho phép các máy tìm kiếm như Google hiểu yêu cầu tra cứu bằng văn bản hoặc giọng nói.", isCorrect: true },
+          { label: "b", text: "AI có khả năng học từ dữ liệu để điều chỉnh hành vi, ví dụ như hệ thống gợi ý video của YouTube.", isCorrect: true },
+          { label: "c", text: "Khả năng suy luận của AI chỉ đơn thuần là việc ghi nhận dữ liệu cảm biến mà không dựa trên tri thức hay logic.", isCorrect: false },
+          { label: "d", text: "AI nhận thức được môi trường xung quanh bằng cách sử dụng các cảm biến và dữ liệu đầu vào (ví dụ xe tự lái).", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_tf_3", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "tf",
+        question: "Câu 3: Phát biểu về phân loại Trí tuệ nhân tạo theo chức năng:",
+        items: [
+          { label: "a", text: "AI được chia thành hai loại chính: Trí tuệ nhân tạo hẹp (yếu) và Trí tuệ nhân tạo tổng quát (mạnh).", isCorrect: true },
+          { label: "b", text: "Trí tuệ nhân tạo mạnh là các hệ thống có khả năng tự học, tự thích nghi ở mọi lĩnh vực giống con người và đang được dùng phổ biến hiện nay.", isCorrect: false },
+          { label: "c", text: "Chương trình máy tính chơi cờ hay phần mềm nhận dạng khuôn mặt là ví dụ về Trí tuệ nhân tạo yếu.", isCorrect: true },
+          { label: "d", text: "Trí tuệ nhân tạo hẹp chỉ có khả năng thực hiện một nhiệm vụ cụ thể được thiết kế sẵn.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_tf_4", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "tf",
+        question: "Câu 4: Khi nói về các ứng dụng của AI, các nhận định sau đúng hay sai?",
+        items: [
+          { label: "a", text: "Hệ chuyên gia MYCIN là ứng dụng AI tiên phong trong chẩn đoán y tế dựa trên tập hợp các luật suy diễn.", isCorrect: true },
+          { label: "b", text: "Các phần mềm trợ lí ảo (Siri, Google Assistant) chỉ có thể nhận lệnh bằng văn bản chứ không hiểu được tiếng nói.", isCorrect: false },
+          { label: "c", text: "Ứng dụng AI có khả năng nhận dạng chữ viết tay và xác minh chữ kí trong các giao dịch thương mại điện tử.", isCorrect: true },
+          { label: "d", text: "Google Dịch chỉ dịch được từng từ riêng lẻ bằng từ điển lập trình sẵn chứ không sử dụng AI để dịch câu theo ngữ cảnh.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_tf_5", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "tf",
+        question: "Câu 5: Về sự khác biệt giữa AI và tự động hóa thông thường:",
+        items: [
+          { label: "a", text: "Ấm đun nước tự động ngắt điện khi nước sôi là một ứng dụng tiêu biểu của Trí tuệ nhân tạo.", isCorrect: false },
+          { label: "b", text: "Robot lắp ráp chỉ thực hiện lặp đi lặp lại một vài thao tác cố định theo lập trình cứng không được coi là hệ thống AI.", isCorrect: true },
+          { label: "c", text: "Khác biệt cơ bản giữa AI và tự động hóa là AI sở hữu các đặc trưng trí tuệ như khả năng học, nhận thức và suy luận.", isCorrect: true },
+          { label: "d", text: "Hệ thống cửa tự động mở khi có người tới gần nhờ cảm biến chuyển động là một hệ thống Trí tuệ nhân tạo mạnh.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_1", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 1. Đâu KHÔNG là ví dụ về khả năng nhận thức được môi trường xung quanh của hệ thống AI?",
+        options: [
+          { text: "Phần mềm chụp ảnh có thể thay đổi chế độ tùy thuộc mức độ ánh sáng thực.", isCorrect: false },
+          { text: "Trợ lí ảo có thể trả lời câu hỏi bảng nhận diện giọng nói của người dùng.", isCorrect: true },
+          { text: "Xe tự lái có khả năng đi đúng làn đường.", isCorrect: false },
+          { text: "Robot hút bui có khả năng tránh vật cản trên đường đi.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_2", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 2. Biện pháp nào là quan trọng nhất để giảm thiểu nguy cơ của ứng dụng AI?",
+        options: [
+          { text: "Đưa ra các quy định và luật để quản lí việc phát triển và sử dụng AI.", isCorrect: true },
+          { text: "Chỉ phát triển ứng dụng AI đảm bảo an toàn, minh bạch và chính xác.", isCorrect: false },
+          { text: "Cấm sử dụng AI trong một số lĩnh vực có nguy cơ ảnh hưởng lớn.", isCorrect: false },
+          { text: "Giới hạn độ tuổi được sử dụng các ứng dụng AI.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_3", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 3. Đánh giá nào KHÔNG phù hợp về tri thức của ChatGPT?",
+        options: [
+          { text: "Có khả năng tạo văn bản theo nhiều phong cách khác nhau.", isCorrect: false },
+          { text: "Có khả năng trả lời câu hỏi ở nhiều dạng khác nhau.", isCorrect: false },
+          { text: "Có kiến thức chuyên sâu về nhiều lĩnh vực.", isCorrect: true },
+          { text: "Có hiểu biết rộng về nhiều lĩnh vực.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_4", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 4. Phương án nào sau đây KHÔNG là ví dụ cho khả năng học của hệ thống AI?",
+        options: [
+          { text: "Robot hút bụi có thể nhận biết khu vực cần làm sạch nhiều hơn để điều chỉnh phương pháp làm sạch phù hợp.", isCorrect: false },
+          { text: "Robot xếp dỡ hàng hóa ngày càng thực hiện xếp hàng chính xác và nhanh chóng hơn.", isCorrect: false },
+          { text: "Robot người máy thông minh Xoxe có thể nhận diện khuôn mặt của người mới bằng cách được cung cấp hình ảnh.", isCorrect: false },
+          { text: "Robot trong dây chuyền lắp ráp ô tô có khả năng hoạt động liên tục nhiều giờ.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_5", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 5. Theo chức năng, AI (Trí tuệ nhân tạo) được chia thành những loại nào?",
+        options: [
+          { text: "Trí tuệ nhân tạo hẹp và trí tuệ nhân tạo yếu.", isCorrect: false },
+          { text: "Trí tuệ nhân tạo yếu và trí tuệ nhân tạo mạnh (Hoặc AI hẹp và AI tổng quát).", isCorrect: true },
+          { text: "Trí tuệ nhân tạo tổng quát và trí tuệ nhân tạo suy luận.", isCorrect: false },
+          { text: "Trí tuệ nhân tạo suy luận và trí tuệ nhân tạo tự nhận thức.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_6", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 6. Hội thảo Dartmouth được tổ chức vào năm nào?",
+        options: [
+          { text: "1986", isCorrect: false },
+          { text: "1956", isCorrect: true },
+          { text: "1950", isCorrect: false },
+          { text: "1972", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_7", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 7. Trong lĩnh vực y tế, thành tựu nào sau đây dựa trên sự phát triển của AI?",
+        options: [
+          { text: "Thanh toán viện phí bằng hình thức chuyển khoản.", isCorrect: false },
+          { text: "Tra cứu hồ sơ điện tử của bệnh nhân bằng số căn cước công dân.", isCorrect: false },
+          { text: "Phần mềm hỗ trợ phân tích hình ảnh X-quang để phát hiện bất thường.", isCorrect: true },
+          { text: "Đặt lịch khám với chuyên gia bằng sử dụng ứng dụng của bệnh viện trên điện thoại di động.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_8", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 8. AI (hay gọi là trí tuệ nhân tạo) là từ viết tắt của cụm từ nào sau đây?",
+        options: [
+          { text: "Adobe Illustrator.", isCorrect: false },
+          { text: "Artificial Intelligence.", isCorrect: true },
+          { text: "Adobe Intelligent.", isCorrect: false },
+          { text: "Artificial Intelligents.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_9", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 9. “Phép thử Turing”, bắt đầu được đưa vào sử dụng vào năm nào?",
+        options: [
+          { text: "1956.", isCorrect: false },
+          { text: "1972.", isCorrect: false },
+          { text: "1950.", isCorrect: true },
+          { text: "1986.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_10", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 10. Chương trình máy tính chơi cờ thuộc loại Trí tuệ nhân tạo nào?",
+        options: [
+          { text: "Trí tuệ nhân tạo mạnh.", isCorrect: false },
+          { text: "Trí tuệ nhân tạo suy luận.", isCorrect: false },
+          { text: "Trí tuệ nhân tạo tổng quát.", isCorrect: false },
+          { text: "Trí tuệ nhân tạo yếu.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_11", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 11. Phương án nào sau đây KHÔNG là ứng dụng của AI?",
+        options: [
+          { text: "ChatGPT.", isCorrect: false },
+          { text: "Onedrive của Microsoft.", isCorrect: true },
+          { text: "Google Assistant của Google.", isCorrect: false },
+          { text: "Siri của Apple.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_12", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 12. “Phép thử Turing” được sử dụng với mục đích gì?",
+        options: [
+          { text: "Đánh giá khả năng nắm bắt thông tin từ dữ liệu của máy tính.", isCorrect: false },
+          { text: "Đánh giá khả năng của máy tính trong việc thể hiện các hành vi thông minh.", isCorrect: true },
+          { text: "Đánh giá khả năng cảm nhận và hiểu biết môi trường xung quanh của máy tính.", isCorrect: false },
+          { text: "Đánh giá tốc độ xử lý của máy tính trong giải quyết vấn đề phức tạp.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_13", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 13. Với sự phát triển của AI, trong tương lai việc làm nào sau đây có thể không cần con người thực hiện?",
+        options: [
+          { text: "Bác sĩ tâm lí.", isCorrect: false },
+          { text: "Giáo viên.", isCorrect: false },
+          { text: "Vận động viên.", isCorrect: false },
+          { text: "Nhân viên tư vấn.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_14", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 14. Hệ thống dự báo thời tiết sử dụng mô hình dự báo dựa trên dữ liệu thời tiết trước đây để đưa ra dự báo thời tiết cho thời gian tới, đang thể hiện đặc trưng cơ bản nào của AI?",
+        options: [
+          { text: "Khả năng học.", isCorrect: true },
+          { text: "Khả năng giải quyết vấn đề.", isCorrect: false },
+          { text: "Khả năng hiểu ngôn ngữ.", isCorrect: false },
+          { text: "Khả năng nhận thức.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_15", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 15. Hệ thống khuyến nghị tích hợp trên YouTube có thể học từ lịch sử xem video và đề xuất các video mới dựa trên sở thích của từng người dùng cụ thể, đang thể hiện đặc trưng cơ bản nào của AI:",
+        options: [
+          { text: "Khả năng suy luận.", isCorrect: false },
+          { text: "Khả năng nhận thức.", isCorrect: false },
+          { text: "Khả năng giải quyết vấn đề.", isCorrect: false },
+          { text: "Khả năng học.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_16", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 16. Hội thảo nào được coi là điểm mốc ghi nhận sự ra đời của thuật ngữ AI?",
+        options: [
+          { text: "Hội thảo Jenesys.", isCorrect: false },
+          { text: "Hội thảo Dartmouth.", isCorrect: true },
+          { text: "Hội thảo Hampshire.", isCorrect: false },
+          { text: "Hội thảo Bletchley.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_17", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 17. Công việc có tính chất như thế nào thì ứng dụng AI sẽ lấy mất việc làm của con người?",
+        options: [
+          { text: "Đòi hỏi kĩ năng vận động tinh tế.", isCorrect: false },
+          { text: "Đòi hỏi sự đồng cảm và thấu hiểu.", isCorrect: false },
+          { text: "Lặp lại một vài thao tác đơn giản.", isCorrect: true },
+          { text: "Cần sự sáng tạo và trí tưởng tượng.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_18", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 18. Phát biểu nào sau đây là SAI về ứng dụng AI?",
+        options: [
+          { text: "Người dùng không được biết quá trình suy luận trong ứng dụng AI.", isCorrect: false },
+          { text: "Hình ảnh, video tạo ra từ AI có thể là giả mạo để lừa đảo.", isCorrect: false },
+          { text: "Câu trả lời của hệ thống tư vấn AI luôn luôn đáng tin cậy.", isCorrect: true },
+          { text: "Gợi ý do hệ thống AI đưa ra có thể không chính xác nếu dữ liệu huấn luyện sai lệch.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_19", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 19. Khả năng nào KHÔNG được xem là đặc trưng cơ bản của AI?",
+        options: [
+          { text: "Khả năng giải quyết vấn đề.", isCorrect: false },
+          { text: "Khả năng nhận thức.", isCorrect: false },
+          { text: "Khả năng diễn đạt.", isCorrect: true },
+          { text: "Khả năng học.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_20", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 20. Hệ chuyên gia MYCIN là hệ chuyên gia thuộc lĩnh vực nào?",
+        options: [
+          { text: "Giao thông.", isCorrect: false },
+          { text: "Tài chính.", isCorrect: false },
+          { text: "Giáo dục.", isCorrect: false },
+          { text: "Y học.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_21", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 21. Hệ thống chẩn đoán y tế dựa vào tri thức về các triệu chứng và bệnh lí để đưa ra chẩn đoán tình trạng sức khỏe của người bệnh, đang thể hiện đặc trưng cơ bản nào của AI?",
+        options: [
+          { text: "Khả năng suy luận.", isCorrect: true },
+          { text: "Khả năng nhận thức.", isCorrect: false },
+          { text: "Khả năng giải quyết vấn đề.", isCorrect: false },
+          { text: "Khả năng học.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_22", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 22. Tình huống nào sau đây có ứng dụng AI?",
+        options: [
+          { text: "Khách hàng thực hiện việc đặt đơn hàng trên website bằng việc tích chọn mặt hàng, nhập số lượng, chọn phương thức vận chuyển và hình thức thành toán.", isCorrect: false },
+          { text: "Khách hàng trò chuyện với một Chatbox để tìm hiểu thông tin về sản phẩm quan tâm.", isCorrect: true },
+          { text: "Người quản lí xem thống kê hàng tồn kho thông qua một phần mềm quản lí hàng hóa.", isCorrect: false },
+          { text: "Nhân viên đóng gói sản phẩm theo danh sách đơn hàng được trích xuất từ website bán hàng của công ty.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_23", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 23. Trong lĩnh vực điều khiển tự động, thiết bị nào sau đây KHÔNG có ứng dụng AI?",
+        options: [
+          { text: "Robot thực hiện nhiệm vụ lắp ráp ô tô trong dây chuyền sản xuất.", isCorrect: false },
+          { text: "Đèn chiếu sáng có cảm ứng tự bật/tắt.", isCorrect: true },
+          { text: "Máy bay giao hàng không người lái.", isCorrect: false },
+          { text: "Xe ô tô tự lái.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_24", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 24. Theo chức năng có thể chia AI thành mấy loại chính?",
+        options: [
+          { text: "3", isCorrect: false },
+          { text: "5", isCorrect: false },
+          { text: "2 (Trí tuệ nhân tạo yếu và mạnh)", isCorrect: true },
+          { text: "4", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b1_mcq_25", lesson: "b1", lessonTitle: "Bài 1: Làm quen với Trí tuệ nhân tạo", type: "single",
+        question: "Câu 25. Thị giác máy tính thực hiện được tác vụ nào sau đây?",
+        options: [
+          { text: "Dự báo thời tiết.", isCorrect: false },
+          { text: "Tăng độ nét và làm mịn ảnh.", isCorrect: false },
+          { text: "Phân tích hình ảnh y tế.", isCorrect: true },
+          { text: "Nhận dạng giọng nói.", isCorrect: false }
+        ]
+      },
+
+      // ================= BÀI 2 =================
+      {
+        id: "tin_b2_tf_6", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "tf",
+        question: "Câu 6: Ứng dụng AI trong các lĩnh vực khoa học và đời sống:",
+        items: [
+          { label: "a", text: "Trong nông nghiệp, AI giúp tối ưu hóa quy trình chăm sóc cây trồng dựa trên phân tích dữ liệu thời tiết, đất đai.", isCorrect: true },
+          { label: "b", text: "Sự phát triển của các phương tiện tự lái hiện nay hoàn toàn không sử dụng tới công nghệ Trí tuệ nhân tạo.", isCorrect: false },
+          { label: "c", text: "Phần mềm IBM Watson for Oncology là một ứng dụng tiêu biểu của AI hỗ trợ chuyên gia đưa ra phác đồ điều trị ung thư.", isCorrect: true },
+          { label: "d", text: "Trong giáo dục, AI có khả năng theo dõi tiến trình học và đề xuất nội dung cá nhân hóa cho từng người học.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b2_tf_7", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "tf",
+        question: "Câu 7: Về Trí tuệ nhân tạo tạo sinh (Generative AI) và mô hình ChatGPT:",
+        items: [
+          { label: "a", text: "ChatGPT là hệ thống AI tạo sinh có khả năng hiểu, tương tác và tạo văn bản ngôn ngữ tự nhiên như con người.", isCorrect: true },
+          { label: "b", text: "AI tạo sinh chỉ có thể xử lý văn bản, hoàn toàn không thể tạo ra hình ảnh hay âm thanh tự động.", isCorrect: false },
+          { label: "c", text: "Tri thức của ChatGPT được huấn luyện dựa trên lượng dữ liệu khổng lồ thu thập từ sách, báo, Internet.", isCorrect: true },
+          { label: "d", text: "ChatGPT cung cấp một câu trả lời cố định duy nhất cho mọi người dùng mà không có khả năng thích nghi với ngữ cảnh hội thoại.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_tf_8", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "tf",
+        question: "Câu 8: Nguy cơ và cảnh báo về sự phát triển nhanh chóng của AI:",
+        items: [
+          { label: "a", text: "Khả năng tự động hóa cao của AI có thể gây ra áp lực thất nghiệp cho nhiều ngành nghề lao động truyền thống.", isCorrect: true },
+          { label: "b", text: "Phần lớn các ứng dụng AI hiện nay là \"hộp đen\" (black box), khiến con người khó hiểu rõ cách chúng đưa ra quyết định.", isCorrect: true },
+          { label: "c", text: "Việc thu thập lượng lớn dữ liệu cá nhân để huấn luyện AI làm tăng nguy cơ vi phạm quyền riêng tư của người dùng.", isCorrect: true },
+          { label: "d", text: "Dữ liệu huấn luyện bị sai lệch sẽ không ảnh hưởng gì đến tính chính xác của các quyết định do AI đưa ra.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_tf_9", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "tf",
+        question: "Câu 9: Khía cạnh đạo đức và pháp lý của công nghệ AI:",
+        items: [
+          { label: "a", text: "Trong xung đột vũ trang, việc giao toàn quyền cho AI điều khiển vũ khí sát thương là giải pháp nhân đạo đang được thế giới ủng hộ.", isCorrect: false },
+          { label: "b", text: "Ứng dụng AI tạo hình ảnh/video giả mạo (Deepfake) tiềm ẩn nguy cơ bị lợi dụng để phát tán tin giả và lừa đảo.", isCorrect: true },
+          { label: "c", text: "Hiện nay, các quốc gia đang xây dựng các ràng buộc pháp lý chặt chẽ để đảm bảo AI phát triển an toàn và phục vụ cộng đồng.", isCorrect: true },
+          { label: "d", text: "Việc tích hợp \"bộ não\" robot vào não người là công nghệ đã hoàn thiện, tuyệt đối an toàn và không gây tranh cãi đạo đức.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_tf_10", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "tf",
+        question: "Câu 10: Khái niệm AIoT và ứng dụng giám sát:",
+        items: [
+          { label: "a", text: "AIoT là thuật ngữ chỉ sự kết hợp giữa công nghệ Trí tuệ nhân tạo (AI) và Internet vạn vật (IoT).", isCorrect: true },
+          { label: "b", text: "Các trang trại thông minh ứng dụng AIoT chỉ để thay thế camera giám sát an ninh chống trộm thông thường.", isCorrect: false },
+          { label: "c", text: "Sự kết hợp AIoT giúp các nhà khoa học giám sát môi trường tự nhiên và theo dõi xu hướng biến đổi khí hậu hiệu quả hơn.", isCorrect: true },
+          { label: "d", text: "Hệ thống AIoT có thể tự động phân tích dữ liệu từ các cảm biến IoT để ra quyết định mà không cần con người can thiệp liên tục.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_1", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 1. Ứng dụng nào của AI sử dụng hình ảnh để tương tác. Chọn đáp án SAI:",
+        options: [
+          { text: "Nhận diện khuôn mặt", isCorrect: false },
+          { text: "Chẩn đoán y khoa bằng hình ảnh", isCorrect: false },
+          { text: "Xe tự lái", isCorrect: false },
+          { text: "Tài xế lái xe công nghệ", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_2", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 2. Nhiều lĩnh vực khoa học, công nghệ và đời sống đã và đang nhận được rất nhiều lợi ích từ sự phát triển của AI. Hãy chọn câu đúng nhất:",
+        options: [
+          { text: "Hệ chuyên gia; Y học và chăm sóc sức khỏe; Giao thông vận tải; Tài chính, ngân hàng; Sản xuất; Y tế.", isCorrect: true },
+          { text: "Hệ chuyên gia; Y học và chăm sóc sức khỏe; Giao thông vận tải; Tài chính, ngân hàng; Sản phẩm; Giáo dục.", isCorrect: false },
+          { text: "Hệ chuyên nghiệp; Y học và chăm sóc sức khỏe; Giao thông vận tải; Tài chính, ngân hàng; Sản xuất; Giáo dục.", isCorrect: false },
+          { text: "Hệ chuyên gia; Y học và chăm sóc sức khỏe; Giao thông vận tải; Tài chính, ngân hàng; Sản xuất; Giáo dục.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_3", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 3. Sự kết hợp IoT và AI (AIoT) cho phép các nhà khoa học giám sát môi trường … và theo dõi tình hình … khí hậu. Điền cụm từ còn thiếu vào các dấu ba chấm:",
+        options: [
+          { text: "… thiên nhiên … biến đổi …", isCorrect: false },
+          { text: "… tự nhiên … thay đổi …", isCorrect: false },
+          { text: "… thiên nhiên … thay đổi …", isCorrect: false },
+          { text: "… tự nhiên … biến đổi …", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_4", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 4. ChatGPT hoạt động tốt nhất trong các ngôn ngữ phổ biến và có nhiều dữ liệu huấn luyện, chẳng hạn như:",
+        options: [
+          { text: "Tiếng Anh, Trung, Pháp, Đức, Ý và một số ngôn ngữ khác.", isCorrect: true },
+          { text: "Tiếng Việt, Tây Ban Nha, Pháp, Đức, Ý và một số ngôn ngữ khác.", isCorrect: false },
+          { text: "Tiếng Anh, Tây Ban Nha, Pháp, Đức, Ý và một số ngôn ngữ khác.", isCorrect: false },
+          { text: "Tiếng Việt, Trung, Hàn, Anh, Pháp và một số ngôn ngữ khác.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_5", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 5. Trong công nghiệp, AI giúp tự động hóa nhiều quá trình, từ chế tạo, lắp ráp, kiểm tra chất lượng đến quản lí chuỗi cung ứng. Phát biểu trên thuộc lĩnh vực nào?",
+        options: [
+          { text: "Sản xuất", isCorrect: true },
+          { text: "Giáo dục", isCorrect: false },
+          { text: "Giao thông vận tải", isCorrect: false },
+          { text: "Tài chính, ngân hàng", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_6", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 6. Các thành tựu hiện tại (tính đến năm 2024) của AI nói chung đều thuộc phạm vi:",
+        options: [
+          { text: "Trí tuệ nhân tạo mạnh", isCorrect: false },
+          { text: "Trí tuệ nhân tạo tổng quát", isCorrect: false },
+          { text: "Trí tuệ nhân tạo hẹp", isCorrect: true },
+          { text: "Trí tuệ nhân tạo rộng", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_7", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 7. Các chuyên gia y tế khẳng định phần mềm … đã góp phần nâng cao hiệu quả điều trị ung thư. Điền cụm từ còn thiếu:",
+        options: [
+          { text: "WHO Watson for Oncology", isCorrect: false },
+          { text: "Intel Watson for Oncology", isCorrect: false },
+          { text: "WTO Watson for Oncology", isCorrect: false },
+          { text: "IBM Watson for Oncology", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_8", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 8. Bên cạnh những lợi ích to lớn, sự phát triển của AI còn kéo theo những nguy cơ cần được cảnh báo nào sau đây?",
+        options: [
+          { text: "Áp lực thất nghiệp; Ảnh hưởng quyền riêng tư; Khả năng thiếu minh bạch; Rủi ro về an ninh, an toàn.", isCorrect: true },
+          { text: "Áp lực kinh tế; Ảnh hưởng quyền riêng tư; Khả năng thiếu minh bạch; Rủi ro về an ninh, an toàn.", isCorrect: false },
+          { text: "Áp lực thất nghiệp; Ảnh hưởng quyền ưu tiên; Khả năng thiếu minh bạch; Rủi ro về an ninh, an toàn.", isCorrect: false },
+          { text: "Áp lực thất nghiệp; Ảnh hưởng quyền riêng tư; Khả năng thiếu chuyên nghiệp; Rủi ro về an ninh, an toàn.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_9", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 9. ChatGPT là một hệ thống xử lí ngôn ngữ tiên tiến do … phát triển:",
+        options: [
+          { text: "Intel", isCorrect: false },
+          { text: "Google", isCorrect: false },
+          { text: "OpenAI", isCorrect: true },
+          { text: "IBM", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_10", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 10. AI được sử dụng để phát triển các nền tảng học tập được cá nhân hóa và hỗ trợ đánh giá kết quả học tập. Phát biểu trên thuộc lĩnh vực nào?",
+        options: [
+          { text: "Tài chính, ngân hàng", isCorrect: false },
+          { text: "Giáo dục", isCorrect: true },
+          { text: "Sản xuất", isCorrect: false },
+          { text: "Y học và chăm sóc sức khỏe", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b2_mcq_11", lesson: "b2", lessonTitle: "Bài 2: Trí tuệ nhân tạo trong Khoa học & Đời sống", type: "single",
+        question: "Câu 11. Sự kết hợp IoT và AI (AIoT) giúp ích cho các nhà khoa học như thế nào?",
+        options: [
+          { text: "Hỗ trợ quyết định đầu tư, phát hiện và ngăn chặn gian lận, nâng cao trải nghiệm khách hàng trong lĩnh vực tài chính, ngân hàng.", isCorrect: false },
+          { text: "Cải thiện hiệu suất, hiệu quả của các lĩnh vực sản xuất.", isCorrect: false },
+          { text: "Giúp giám sát môi trường tự nhiên và theo dõi tình hình biến đổi khí hậu.", isCorrect: true },
+          { text: "Phát triển các nền tảng học trực tuyến thông minh.", isCorrect: false }
+        ]
+      },
+
+      // ================= BÀI 3 =================
+      {
+        id: "tin_b3_tf_11", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "tf",
+        question: "Câu 11: Phân biệt chức năng của Hub và Switch trong mạng LAN:",
+        items: [
+          { label: "a", text: "Hub và Switch đều là các thiết bị kết nối dùng để gắn trực tiếp các máy tính trong cùng một mạng LAN thông qua cáp mạng.", isCorrect: true },
+          { label: "b", text: "Khi máy tính gửi dữ liệu qua một cổng của Hub, tín hiệu sẽ bị phát tán mù quáng tới tất cả các cổng còn lại.", isCorrect: true },
+          { label: "c", text: "Switch làm tăng nguy cơ xung đột tín hiệu vì nó phát tán dữ liệu ra toàn bộ mạng thay vì tạo kênh riêng tạm thời.", isCorrect: false },
+          { label: "d", text: "Đối với mạng LAN có hàng chục đến hàng trăm máy, sử dụng Switch sẽ mang lại hiệu suất làm việc và ổn định cao hơn Hub.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b3_tf_12", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "tf",
+        question: "Câu 12: Về thiết bị Router (Bộ định tuyến):",
+        items: [
+          { label: "a", text: "Router là thiết bị dùng để chọn đường (định tuyến) và chuyển tiếp dữ liệu giữa các mạng cục bộ khác nhau trên Internet.", isCorrect: true },
+          { label: "b", text: "Router kết nối mạng LAN ra Internet chỉ sử dụng duy nhất các cổng LAN chứ không có cổng WAN.", isCorrect: false },
+          { label: "c", text: "Thiết bị Router cung cấp cho mạng gia đình hiện nay thường được tích hợp cả chức năng thu phát sóng Wi-Fi.", isCorrect: true },
+          { label: "d", text: "Dữ liệu truyền từ máy tính gửi đến máy tính nhận trên mạng diện rộng có thể phải trung chuyển qua nhiều Router khác nhau.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b3_tf_13", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "tf",
+        question: "Câu 13: Đặc điểm của thiết bị chuyển đổi Modem:",
+        items: [
+          { label: "a", text: "Modem có chức năng cốt lõi là chuyển đổi tín hiệu số (digital) thành tín hiệu tương tự (analog) và ngược lại.", isCorrect: true },
+          { label: "b", text: "Máy tính có thể xử lý trực tiếp tín hiệu dạng sóng mang điện thoại mà không cần phải thông qua Modem.", isCorrect: false },
+          { label: "c", text: "Modem ADSL sử dụng hạ tầng cáp điện thoại nhưng truyền trên tần số riêng để cung cấp kết nối Internet.", isCorrect: true },
+          { label: "d", text: "Modem quang là loại thiết bị chuyển đổi tín hiệu số sang tín hiệu quang học để truyền tải qua hệ thống cáp quang.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b3_tf_14", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "tf",
+        question: "Câu 14: Điểm truy cập không dây (Wireless Access Point - WAP):",
+        items: [
+          { label: "a", text: "WAP là thiết bị kết nối mạng sử dụng chuẩn kỹ thuật truyền dữ liệu bằng sóng vô tuyến điện (Wi-Fi).", isCorrect: true },
+          { label: "b", text: "Thiết lập mạng LAN qua WAP tốn kém chi phí mua cáp mạng và công lắp đặt hơn rất nhiều so với sử dụng Hub/Switch.", isCorrect: false },
+          { label: "c", text: "Khi gắn thêm một thiết bị WAP vào mạng LAN có dây, ta có thể mở rộng phạm vi kết nối cho các thiết bị di động.", isCorrect: true },
+          { label: "d", text: "Mọi điểm truy cập không dây (WAP) đều yêu cầu bắt buộc phải có mật khẩu thì thiết bị mới tìm thấy tên mạng (SSID).", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_tf_15", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "tf",
+        question: "Câu 15: Kết nối vật lý mạng LAN và giao diện thiết bị:",
+        items: [
+          { label: "a", text: "Loại cáp mạng phổ biến nhất để nối các máy tính trong mạng LAN hiện nay là cáp UTP (Cáp xoắn đôi không chống nhiễu).", isCorrect: true },
+          { label: "b", text: "Đầu cắm chuẩn được sử dụng cho cáp mạng UTP là giắc cắm RJ11 (tương tự như dây điện thoại bàn).", isCorrect: false },
+          { label: "c", text: "Hầu hết các máy tính để bàn thường không được tích hợp sẵn khả năng kết nối Wi-Fi giống như máy tính xách tay.", isCorrect: true },
+          { label: "d", text: "Biểu tượng Wi-Fi trên các hệ điều hành sẽ hiển thị kèm một chiếc ổ khóa nhỏ nếu mạng đó yêu cầu mật khẩu bảo mật.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_1", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 1. Muốn kết nối các máy tính trong phạm vi gia đình thành một mạng, nên dùng loại thiết bị nào sau đây?",
+        options: [
+          { text: "Switch", isCorrect: false },
+          { text: "WAP", isCorrect: false },
+          { text: "Modem", isCorrect: false },
+          { text: "Router (Router Wi-Fi).", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_2", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        customHtml: SVG_IMAGES.b3_c2_wap,
+        question: "Câu 2. Nhận diện giao diện tìm các WAP ở gần theo hình trên:",
+        options: [
+          { text: "a)-Giao diện trên Windows 11, b)-Giao diện trên Android, c)-Giao diện trên iOS.", isCorrect: true },
+          { text: "a)-Giao diện trên iOS, b)-Giao diện trên Android, c)-Giao diện trên Windows 11.", isCorrect: false },
+          { text: "a)-Giao diện trên Windows 11, b)-Giao diện trên iOS, c)- Giao diện trên Android.", isCorrect: false },
+          { text: "a)-Giao diện trên Android, b)-Giao diện trên Windows 11, c)- Giao diện trên iOS.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_3", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 3. Chọn đáp án SAI. Thiết bị nào sau đây là thiết bị mạng thông dụng?",
+        options: [
+          { text: "Laptop", isCorrect: true },
+          { text: "Router", isCorrect: false },
+          { text: "Switch", isCorrect: false },
+          { text: "Hub", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_4", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 4. Chọn phát biểu đúng trong các phát biểu sau:",
+        options: [
+          { text: "Switch là thiết bị có chức năng chuyển đổi tín hiệu số thành tín hiệu tương tự và ngược lại.", isCorrect: false },
+          { text: "Modem là thiết bị có chức năng chuyển đổi tín hiệu số thành tín hiệu tương tự và ngược lại.", isCorrect: true },
+          { text: "Router là thiết bị có chức năng chuyển đổi tín hiệu số thành tín hiệu tương tự và ngược lại.", isCorrect: false },
+          { text: "Hub là thiết bị có chức năng chuyển đổi tín hiệu số thành tín hiệu tương tự và ngược lại.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_5", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        customHtml: SVG_IMAGES.b3_c5_rj45,
+        question: "Câu 5. Gọi tên chính xác các thành phần theo hình trên:",
+        options: [
+          { text: "1-Cổng RJ45, 2-Giắc cắm RJ45, 3-Cáp UTP", isCorrect: true },
+          { text: "1-Cáp UTP, 2-Giắc cắm RJ45, 3-Cổng RJ45", isCorrect: false },
+          { text: "1-Cổng RJ45, 2-Cáp UTP, 3-Giắc cắm RJ45", isCorrect: false },
+          { text: "1-Giắc cắm RJ45, 2-Cổng cắm RJ45, 3-Cáp UTP", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_6", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 6. Có bao nhiêu loại kết nối máy tính với các thiết bị mạng phổ biến hiện nay?",
+        options: [
+          { text: "3 loại", isCorrect: false },
+          { text: "2 loại (Kết nối có dây và kết nối không dây).", isCorrect: true },
+          { text: "5 loại", isCorrect: false },
+          { text: "4 loại", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_7", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 7. Các thiết bị mạng thông dụng gồm:",
+        options: [
+          { text: "Hub, Laptop, Wireless Access Point, Router, Modem", isCorrect: false },
+          { text: "Hub, Switch, Wireless Access Point, Router, Điện thoại thông minh", isCorrect: false },
+          { text: "Hub, Switch, Wireless Access Point, Router, Modem", isCorrect: true },
+          { text: "Máy ảnh số, Switch, Wireless Access Point, Router, Modem", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_8", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 8. Wi-Fi là một bộ tiêu chuẩn kĩ thuật truyền dữ liệu bằng … được sử dụng rộng rãi trong các mạng cục bộ:",
+        options: [
+          { text: "Cáp xoắn đôi", isCorrect: false },
+          { text: "Sóng vô tuyến điện", isCorrect: true },
+          { text: "Cáp đồng trục", isCorrect: false },
+          { text: "Đường dây điện thoại", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_9", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 9. Loại modem nào cho phép nối hai máy tính qua hệ thống chuyển mạch của mạng điện thoại công cộng?",
+        options: [
+          { text: "Modem quay số.", isCorrect: true },
+          { text: "Modem GSM 3G, 4G, 5G,…", isCorrect: false },
+          { text: "Modem ADSL.", isCorrect: false },
+          { text: "Modem quang.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b3_mcq_10", lesson: "b3", lessonTitle: "Bài 3: Thiết bị mạng thông dụng", type: "single",
+        question: "Câu 10. Điểm khác nhau của Hub và Switch là ở:",
+        options: [
+          { text: "Số cổng kết nối", isCorrect: false },
+          { text: "Hình dáng thiết bị", isCorrect: false },
+          { text: "Cách thức hoạt động", isCorrect: true },
+          { text: "Màu sắc thiết bị", isCorrect: false }
+        ]
+      },
+
+      // ================= BÀI 4 =================
+      {
+        id: "tin_b4_tf_16", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "tf",
+        question: "Câu 16: Khái niệm và các đặc điểm chung của Giao thức mạng:",
+        items: [
+          { label: "a", text: "Giao thức mạng (Network protocol) là tập hợp các quy định về cách thức giao tiếp để truyền nhận dữ liệu trên mạng.", isCorrect: true },
+          { label: "b", text: "Giao thức mạng chỉ nhằm mục đích quy định chi phí người dùng phải trả cho các nhà mạng khi truy cập Internet.", isCorrect: false },
+          { label: "c", text: "SMTP là giao thức quy định các tiêu chuẩn liên quan đến việc gửi thư điện tử (email).", isCorrect: true },
+          { label: "d", text: "Các đối tượng tham gia mạng có thể giao tiếp, trao đổi file với nhau bình thường mà không cần tuân thủ bất kỳ giao thức chung nào.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_tf_17", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "tf",
+        question: "Câu 17: Giao thức IP (Internet Protocol) và cơ chế định tuyến:",
+        items: [
+          { label: "a", text: "Giao thức IP quy định về cách thiết lập địa chỉ mạng và cơ chế dẫn đường (định tuyến) gói tin.", isCorrect: true },
+          { label: "b", text: "Địa chỉ IP là địa chỉ phần cứng cố định (địa chỉ MAC) do nhà sản xuất mạng gắn vĩnh viễn vào thiết bị.", isCorrect: false },
+          { label: "c", text: "Mỗi địa chỉ IPv4 bao gồm 4 byte, thường được biểu diễn dưới dạng 4 số thập phân ngăn cách nhau bởi dấu chấm.", isCorrect: true },
+          { label: "d", text: "Bảng định tuyến (Routing table) của Router đóng vai trò như các bảng chỉ đường, giúp Router chọn cổng chuyển tiếp gói dữ liệu đi.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_tf_18", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "tf",
+        question: "Câu 18: Giao thức TCP (Transmission Control Protocol):",
+        items: [
+          { label: "a", text: "TCP chia dữ liệu gốc thành nhiều gói có độ dài xác định để truyền trên mạng nhằm tận dụng tối đa hiệu suất đường truyền.", isCorrect: true },
+          { label: "b", text: "Các gói dữ liệu đến đích luôn theo đúng thứ tự gửi nên giao thức TCP không cần cơ chế đánh số thứ tự cho các gói tin.", isCorrect: false },
+          { label: "c", text: "TCP cung cấp cơ chế xác nhận (ACK) để nơi gửi biết gói tin bị lỗi hoặc thất lạc nhằm yêu cầu gửi lại.", isCorrect: true },
+          { label: "d", text: "Giao thức TCP cấp phát số hiệu cổng (port) để đảm bảo gói tin được chuyển đến đúng phần mềm/ứng dụng cụ thể trên máy nhận.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_tf_19", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "tf",
+        question: "Câu 19: Đặc điểm của mạng Internet toàn cầu:",
+        items: [
+          { label: "a", text: "Internet là hệ thống mạng máy tính toàn cầu hoạt động chủ yếu dựa trên bộ giao thức nền tảng TCP/IP.", isCorrect: true },
+          { label: "b", text: "Phương pháp định tuyến động cho phép Router tự động thay đổi đường đi của gói tin khi điều kiện mạng bị thay đổi (ví dụ: đứt cáp).", isCorrect: true },
+          { label: "c", text: "Router thường có một \"cổng mặc định\" để gửi gói tin đi tiếp nếu địa chỉ đích không khớp với bất kỳ quy tắc nào trong bảng định tuyến.", isCorrect: true },
+          { label: "d", text: "Giao thức mạng cục bộ Ethernet hiện đang được áp dụng thay thế hoàn toàn cho giao thức IP trong kết nối mạng diện rộng Internet.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_tf_20", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "tf",
+        question: "Câu 20: Các giao thức mạng phụ trợ và tiện ích:",
+        items: [
+          { label: "a", text: "HTTP là giao thức chuyên dụng được thiết kế để truyền tải các siêu văn bản (trang web).", isCorrect: true },
+          { label: "b", text: "Giao thức DNS hỗ trợ việc chuyển đổi địa chỉ IP dạng số thành tên miền dạng chữ dễ nhớ cho người dùng.", isCorrect: true },
+          { label: "c", text: "Lệnh ping của hệ điều hành ứng dụng giao thức POP3 để kiểm tra tình trạng kết nối đến một thiết bị mạng đích.", isCorrect: false },
+          { label: "d", text: "Trong giao thức mạng cục bộ Ethernet, dữ liệu chuyển đi luôn được kèm theo một mã kiểm tra để phát hiện lỗi truyền.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_1", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 1. Có bao nhiêu phương pháp “định tuyến”?",
+        options: [
+          { text: "2 phương pháp định tuyến. (Định tuyến tĩnh và động).", isCorrect: true },
+          { text: "4 phương pháp định tuyến.", isCorrect: false },
+          { text: "1 phương pháp định tuyến.", isCorrect: false },
+          { text: "3 phương pháp định tuyến.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_2", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 2. Tập hợp các quy định cách thức giao tiếp giữa các đối tượng tham gia truyền nhận dữ liệu qua mạng gọi là giao thức mạng hay còn gọi là:",
+        options: [
+          { text: "Giao thức IMAP", isCorrect: false },
+          { text: "Giao thức POP3", isCorrect: false },
+          { text: "Giao thức SMTP", isCorrect: false },
+          { text: "Giao thức truyền thông", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_3", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 3. Việc trao đổi dữ liệu giữa các máy tính trong mạng cục bộ tuân thủ giao thức Ethernet với quy định chính gồm:",
+        options: [
+          { text: "Quy định về địa chỉ; quy định về mã kiểm tra; quy định khung truyền dữ liệu; quy định về cách thức xử lí các cuộc truyền khi xảy ra xung đột tín hiệu.", isCorrect: true },
+          { text: "Quy định về thời gian; quy định về mã kiểm tra; quy định khung truyền dữ liệu; quy định về cách thức xử lí các cuộc truyền khi xảy ra xung đột tín hiệu.", isCorrect: false },
+          { text: "Quy định về địa chỉ; quy định về mã kiểm tra; quy định khung nhận dữ liệu; quy định về cách thức xử lí các cuộc truyền khi xảy ra xung đột tín hiệu.", isCorrect: false },
+          { text: "Quy định về địa chỉ; quy định về mã chính tả; quy định khung truyền dữ liệu; quy định về cách thức xử lí các cuộc truyền khi xảy ra xung đột tín hiệu.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_4", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 4. Xác định địa chỉ IP tương ứng ở dạng thập phân của dãy nhị phân: 11000000 10101000 00001101 11010010",
+        options: [
+          { text: "131.214.23.16", isCorrect: false },
+          { text: "192.168.13.210", isCorrect: true },
+          { text: "192.168.13.200", isCorrect: false },
+          { text: "192.168.13.10", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_5", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 5. Lập địa chỉ và định tuyến theo địa chỉ là các quy tắc đảm bảo liên kết các LAN toàn cầu. Chúng làm thành giao thức liên mạng, viết tắt là:",
+        options: [
+          { text: "SMTP", isCorrect: false },
+          { text: "POP3", isCorrect: false },
+          { text: "TCP", isCorrect: false },
+          { text: "IP", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_6", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 6. Phát biểu nào sau đây “đúng” khi nói về địa chỉ MAC và địa chỉ IP?",
+        options: [
+          { text: "MAC là địa chỉ 6 byte, IP là địa chỉ 4 byte.", isCorrect: true },
+          { text: "MAC là địa chỉ 4 byte, IP là địa chỉ 4 byte.", isCorrect: false },
+          { text: "MAC là địa chỉ 4 byte, IP là địa chỉ 6 byte.", isCorrect: false },
+          { text: "MAC là địa chỉ 5 byte, IP là địa chỉ 4 byte.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_7", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 7. Giao thức mạng là tập hợp các … về cách thức giao tiếp để truyền dữ liệu giữa các đối tượng tham gia mạng:",
+        options: [
+          { text: "Nội dung", isCorrect: false },
+          { text: "Quy định", isCorrect: true },
+          { text: "Quy tắc", isCorrect: false },
+          { text: "Quy ước", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_8", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 8. Internet là mạng toàn cầu hoạt động theo giao thức:",
+        options: [
+          { text: "SMTP", isCorrect: false },
+          { text: "TCP/IP", isCorrect: true },
+          { text: "HTTP", isCorrect: false },
+          { text: "DNS", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_9", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 9. Giao thức … đảm bảo việc truyền dữ liệu theo từng ứng dụng một cách chính xác, tin cậy và hiệu quả:",
+        options: [
+          { text: "DNS", isCorrect: false },
+          { text: "HTTP", isCorrect: false },
+          { text: "IP", isCorrect: false },
+          { text: "TCP", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_10", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 10. Mỗi thiết bị tham gia Internet đều phải có địa chỉ. Hiện nay có bao nhiêu loại địa chỉ IP?",
+        options: [
+          { text: "4 loại", isCorrect: false },
+          { text: "1 loại", isCorrect: false },
+          { text: "3 loại", isCorrect: false },
+          { text: "2 loại (IPv4 và IPv6).", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b4_mcq_11", lesson: "b4", lessonTitle: "Bài 4: Giao thức mạng", type: "single",
+        question: "Câu 11(vd). Lệnh nào của giao thức ICMP giúp kiểm tra máy tính có kết nối được với một máy tính hay một thiết bị mạng hay không?",
+        options: [
+          { text: "touch.", isCorrect: false },
+          { text: "mkdir.", isCorrect: false },
+          { text: "ping.", isCorrect: true },
+          { text: "tracert.", isCorrect: false }
+        ]
+      },
+
+      // ================= BÀI 5 =================
+      {
+        id: "tin_b5_mcq_1", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 1. Quy trình 4 bước cắm cáp Ethernet, kiểm tra cổng và đèn LED nhằm mục đích:",
+        options: [
+          { text: "Kết nối máy tính với mạng qua cáp Ethernet.", isCorrect: true },
+          { text: "Cài đặt một trình duyệt web.", isCorrect: false },
+          { text: "Thiết lập một máy chủ web.", isCorrect: false },
+          { text: "Chia sẻ máy in giữa các máy tính qua mạng LAN.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_2", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 2. Quy trình thiết lập máy tính của giáo viên thành máy cung cấp dịch vụ in trong phòng máy:",
+        options: [
+          { text: "Kết nối máy in với máy tính qua dây kết nối → Cấu hình chia sẻ máy in → Kết nối máy tính với mạng → In thử từ máy tính khác trong mạng.", isCorrect: true },
+          { text: "Bật tính năng chia sẻ thư mục trên máy tính muốn chia sẻ → Chọn thư mục cần chia sẻ → Thiết lập quyền truy cập cho người dùng → Chia sẻ thư mục.", isCorrect: false },
+          { text: "Mở File Explorer trên máy tính → Nháy chọn vào Network → Nháy chọn vào tên máy tính chứa thư mục được chia sẻ → Nháy chọn vào tên thư mục được chia sẻ.", isCorrect: false },
+          { text: "Bật Wi-fi trên máy tính → Tìm và chọn mạng Wi-fi tương ứng với Access Point → Nhập mật khẩu (nếu có) → Nhấn chọn kết nối.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_3", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 3. Quy trình \"Cài driver trên máy A → Cài chia sẻ trên máy A → Cài driver trên máy B → Thêm máy in đã chia sẻ trên máy B\" thực hiện:",
+        options: [
+          { text: "Chia sẻ thư mục ở máy tính A để máy tính B có thể dùng chung.", isCorrect: false },
+          { text: "Chia sẻ thư mục ở máy tính B để máy tính A có thể dùng chung.", isCorrect: false },
+          { text: "Chia sẻ máy in được kết nối với máy tính A để máy tính B có thể dùng chung.", isCorrect: true },
+          { text: "Chia sẻ máy in được kết nối với máy tính B để máy tính A có thể dùng chung.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_4", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 4. Điền vào Bước 4 trong quy trình in qua mạng: \"Bước 1: Kết nối mạng → Bước 2: Tìm máy in → Bước 3: Thêm máy in → Bước 4: ... → Bước 5: Kiểm tra và in thử\":",
+        options: [
+          { text: "Kết nối máy tính với Access Point.", isCorrect: false },
+          { text: "Lựa chọn thư mục cần chia sẻ.", isCorrect: false },
+          { text: "Cài đặt driver máy in (nếu chưa cài đặt).", isCorrect: true },
+          { text: "Đặt máy tính gần máy in.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_5", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 5. Tên gọi phù hợp nhất cho quy trình dán trên tường phòng thực hành để dùng máy in:",
+        options: [
+          { text: "Hướng dẫn cài đặt phần mềm in trên máy tính và thiết lập máy in.", isCorrect: false },
+          { text: "Hướng dẫn kết nối và sử dụng máy in đã được chia sẻ trong mạng.", isCorrect: true },
+          { text: "Hướng dẫn cài đặt chia sẻ máy in trong mạng LAN.", isCorrect: false },
+          { text: "Hướng dẫn kết nối và sử dụng Access Point.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_6", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 6. Mệnh đề nào sau đây là đúng khi nói về việc chia sẻ tệp và thư mục giữa các máy tính trong một mạng?",
+        options: [
+          { text: "Máy tính cần được kết nối với cùng một mạng Wi-fi để có thể chia sẻ tệp và thư mục.", isCorrect: false },
+          { text: "Việc chia sẻ tệp và thư mục có thể được thực hiện bằng cách sử dụng các tính năng tích hợp sẵn trong hệ điều hành như Windows Sharing.", isCorrect: true },
+          { text: "Việc chia sẻ tệp và thư mục cần phải được thực hiện bằng cách sử dụng các dịch vụ lưu trữ đám mây như Google Drive hoặc Dropbox.", isCorrect: false },
+          { text: "Mọi người dùng trong mạng đều có thể truy cập, chỉnh sửa tệp và thư mục được chia sẻ mà không cần bất kỳ quyền hạn nào.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_7", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 7. Quy trình đúng để bạn B truy cập thư mục được bạn A chia sẻ trên LAN:",
+        options: [
+          { text: "Gửi email đến người quản trị mạng yêu cầu quyền truy cập → Đợi phản hồi → Nhận thông tin đăng nhập → Nháy chọn vào tên thư mục.", isCorrect: false },
+          { text: "Mở File Explorer trên máy tính → Nháy chọn vào Network → Nháy chọn vào tên máy tính chứa thư mục chia sẻ → Nháy chọn vào tên thư mục được chia sẻ.", isCorrect: true },
+          { text: "Bật Bluetooth trên máy tính → Tìm kiếm các thiết bị gần → Đăng nhập → Nháy chọn vào tên thư mục được chia sẻ.", isCorrect: false },
+          { text: "Sử dụng ứng dụng di động để quét mã QR trên máy chủ chưa thư mục → Đăng nhập vào ứng dụng → Nháy chọn vào tên thư mục.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_8", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 8. Mệnh đề nào sau đây là SAI khi nói về việc kết nối máy tính và Access Point?",
+        options: [
+          { text: "Access Point cần được kết nối với Router hoặc Modem để cung cấp truy cập Internet.", isCorrect: false },
+          { text: "Máy tính có thể kết nối với Access Point bằng cáp Ethernet hoặc Wi-fi.", isCorrect: false },
+          { text: "Access Point có thể cung cấp kết nối Internet cho nhiều máy tính cùng lúc.", isCorrect: false },
+          { text: "Tất cả Access Point khi truy cập đều cần mật khẩu.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_9", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 9. Điền vào Bước 3: \"Bước 1: Kết nối máy in với máy tính → Bước 2: Cấu hình chia sẻ máy in → Bước 3: ... → Bước 4: In thử từ máy khác\":",
+        options: [
+          { text: "Kết nối với Bluetooth.", isCorrect: false },
+          { text: "Cài đặt phần mềm diệt virus.", isCorrect: false },
+          { text: "Chia sẻ thư mục.", isCorrect: false },
+          { text: "Kết nối với mạng.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b5_mcq_10", lesson: "b5", lessonTitle: "Bài 5: Chia sẻ tài nguyên trên mạng", type: "single",
+        question: "Câu 10. Trong công ty, người quản lí muốn chia sẻ thư mục chỉ để nhân viên xem văn bản, thông báo. Quyền phù hợp nhất là:",
+        options: [
+          { text: "Full Control.", isCorrect: false },
+          { text: "Read.", isCorrect: true },
+          { text: "Không cần cài đặt chế độ.", isCorrect: false },
+          { text: "Change.", isCorrect: false }
+        ]
+      },
+
+      // ================= BÀI 6 =================
+      {
+        id: "tin_b6_tf_21", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "tf",
+        question: "Câu 21: Ưu điểm của giao tiếp trong không gian mạng (Giao tiếp trực tuyến):",
+        items: [
+          { label: "a", text: "Giao tiếp trực tuyến giúp xóa bỏ ranh giới địa lí, kết nối dễ dàng những người thân hoặc đối tác sống xa nhau.", isCorrect: true },
+          { label: "b", text: "Việc trao đổi công việc, họp hành qua không gian mạng giúp người dùng tiết kiệm được đáng kể thời gian và chi phí đi lại.", isCorrect: true },
+          { label: "c", text: "Giao tiếp trực tuyến không mang lại bất cứ lợi ích nào trong việc mở rộng mạng lưới quan hệ xã hội của người dùng.", isCorrect: false },
+          { label: "d", text: "Giao tiếp trực tuyến thiếu đi sự đa dạng công cụ vì hiện tại chỉ có thể trao đổi duy nhất bằng văn bản chữ viết.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_tf_22", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "tf",
+        question: "Câu 22: Nhược điểm và rủi ro của giao tiếp trên mạng:",
+        items: [
+          { label: "a", text: "Một trong những nhược điểm lớn của nhắn tin trực tuyến là thiếu vắng các tín hiệu phi ngôn ngữ như nét mặt, ngôn ngữ cơ thể.", isCorrect: true },
+          { label: "b", text: "Giao tiếp trên mạng có độ bảo mật tuyệt đối, không bao giờ xảy ra rò rỉ dữ liệu cá nhân hay bị hacker tấn công.", isCorrect: false },
+          { label: "c", text: "Trong thế giới ảo, người dùng rất dễ giả mạo thông tin, gây khó khăn cho việc đánh giá sự chân thật và xây dựng lòng tin.", isCorrect: true },
+          { label: "d", text: "Các sự cố kỹ thuật như rớt mạng, phần mềm lỗi không bao giờ ảnh hưởng đến tiến trình giao tiếp trực tuyến.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_tf_23", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "tf",
+        question: "Câu 23: Yêu cầu về ứng xử nhân văn trong không gian mạng:",
+        items: [
+          { label: "a", text: "Bốn yếu tố cốt lõi của ứng xử nhân văn trên mạng là: Tôn trọng, Lịch sự, Thấu hiểu và Hỗ trợ.", isCorrect: true },
+          { label: "b", text: "Tự do ngôn luận trên không gian mạng đồng nghĩa với việc người dùng được tự do dùng từ ngữ xúc phạm, châm chọc đối thủ tranh luận.", isCorrect: false },
+          { label: "c", text: "Đặt mình vào hoàn cảnh của người khác là một cách hiệu quả để thấu hiểu và giúp đỡ họ bằng những lời an ủi, động viên kịp thời.", isCorrect: true },
+          { label: "d", text: "Cẩn trọng với ngôn từ và cách viết là điều bắt buộc để tránh gây hiểu lầm hoặc mang tính khiêu khích đối phương.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_tf_24", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "tf",
+        question: "Câu 24: Xử lý tình huống giao tiếp trên không gian mạng:",
+        items: [
+          { label: "a", text: "Khi một người bạn vô tình chia sẻ tin tức sai sự thật, cách đúng đắn nhất là bình luận chửi bới công khai để họ nhớ lâu.", isCorrect: false },
+          { label: "b", text: "Khi không đồng ý với ý kiến của ai đó trên diễn đàn, ta nên trao đổi lịch sự và tập trung phản biện ý kiến thay vì tấn công cá nhân.", isCorrect: true },
+          { label: "c", text: "Thấy video bạo lực học đường, việc phát tán rộng rãi để bêu rếu nhân vật trong video là một hành động nhân văn cần làm.", isCorrect: false },
+          { label: "d", text: "Việc chụp lại đoạn tin nhắn riêng tư giữa hai người rồi phát tán cho bên thứ ba khi chưa được sự đồng ý là vi phạm quyền riêng tư.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_tf_25", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "tf",
+        question: "Câu 25: Hành vi vi phạm chuẩn mực đạo đức, pháp luật trực tuyến:",
+        items: [
+          { label: "a", text: "Đăng hình ảnh chụp lén bạn mình trong tư thế nhạy cảm hoặc không đẹp lên mạng xã hội để trêu đùa là hành vi thiếu tôn trọng.", isCorrect: true },
+          { label: "b", text: "Gửi nội dung thư rác (spam) hoặc hàng loạt quảng cáo không liên quan vào một nhóm chat công việc là hành vi thiếu lịch sự.", isCorrect: true },
+          { label: "c", text: "Bất kỳ hình ảnh, video nào đang trôi nổi trên mạng (kể cả tạo ra bằng AI Deepfake) đều được xem là bằng chứng sự thật không thể chối cãi.", isCorrect: false },
+          { label: "d", text: "Trước khi chia sẻ bài viết kêu gọi từ thiện, người dùng luôn cần kiểm tra tính chính xác của thông tin để tránh tiếp tay cho lừa đảo.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_1", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 1. Ưu điểm lớn nhất của giao tiếp trực tuyến là gì?",
+        options: [
+          { text: "Tương tác trực tiếp, sinh động.", isCorrect: false },
+          { text: "Bảo mật thông tin cá nhân cao.", isCorrect: false },
+          { text: "Tiết kiệm thời gian và chi phí.", isCorrect: true },
+          { text: "Mở rộng mối quan hệ xã hội một cách hạn chế.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_2", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 2. Phương án nào sau đây có thể khắc phục nhược điểm \"thiếu giao tiếp phi ngôn ngữ\" trong giao tiếp trực tuyến?",
+        options: [
+          { text: "Tránh tham gia các cuộc trò chuyện trực tuyến.", isCorrect: false },
+          { text: "Sử dụng nhiều biểu tượng cảm xúc (emoji).", isCorrect: true },
+          { text: "Chỉ sử dụng văn bản khi giao tiếp.", isCorrect: false },
+          { text: "Gọi điện thoại audio call thay vì nhắn tin.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_3", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 3. Phương án nào sau đây có thể hạn chế những tác động tiêu cực của giao tiếp trực tuyến?",
+        options: [
+          { text: "Dành nhiều thời gian cho các hoạt động trực tuyến.", isCorrect: false },
+          { text: "Sử dụng mạng xã hội không hạn chế.", isCorrect: false },
+          { text: "Chia sẻ thông tin cá nhân một cách rộng rãi.", isCorrect: false },
+          { text: "Tăng cường tương tác trực tiếp với người thân, bạn bè.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_4", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 4. Ví dụ nào sau đây cho thấy giao tiếp trực tuyến có thể hỗ trợ việc học tập hiệu quả?",
+        options: [
+          { text: "Một sinh viên dành quá nhiều thời gian chơi game trên máy tính.", isCorrect: false },
+          { text: "Một nhóm bạn cùng nhau xem phim trực tuyến.", isCorrect: false },
+          { text: "Một học sinh tham gia một lớp học trực tuyến để học một ngôn ngữ mới.", isCorrect: true },
+          { text: "Một người thường xuyên cập nhật tin tức trên mạng xã hội.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_5", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 5. Cần tổ chức một cuộc họp với các thành viên ở nhiều quốc gia khác nhau. Phương án tối ưu nhất là:",
+        options: [
+          { text: "Tổ chức một cuộc họp trực tiếp tại trụ sở chính.", isCorrect: false },
+          { text: "Gửi email cho từng thành viên để trao đổi thông tin.", isCorrect: false },
+          { text: "Tổ chức một cuộc họp trực tuyến qua video call.", isCorrect: true },
+          { text: "Tổ chức một cuộc khảo sát trực tuyến để thu thập ý kiến.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_6", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 6. Công cụ hội nghị trực tuyến như Zoom hay Teams có ưu điểm nào khi giao tiếp trong thế giới ảo?",
+        options: [
+          { text: "Khó khăn trong việc sắp xếp thời gian phù hợp cho tất cả mọi người tham gia.", isCorrect: false },
+          { text: "Dễ bị mất kết nối mạng, ảnh hưởng đến chất lượng giao tiếp.", isCorrect: false },
+          { text: "Giúp tiết kiệm thời gian và chi phí di chuyển cho các cuộc họp hoặc buổi học.", isCorrect: true },
+          { text: "Không thể chia sẻ tài liệu và thông tin trong thời gian thực.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_7", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 7. Nhược điểm chính của việc sử dụng mạng xã hội để giao tiếp trong thế giới ảo là gì?",
+        options: [
+          { text: "Giúp kết nối với nhiều người trên toàn thế giới một cách dễ dàng.", isCorrect: false },
+          { text: "Thông tin có thể bị lan truyền nhanh chóng mà không kiểm chứng, dễ gây hiểu lầm.", isCorrect: true },
+          { text: "Có thể sử dụng để quảng bá sản phẩm và dịch vụ một cách hiệu quả.", isCorrect: false },
+          { text: "Cung cấp nhiều phương tiện truyền thông khác nhau để giao tiếp.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_8", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 8. Hạn chế cần cân nhắc kỹ khi sử dụng công cụ hội nghị trực tuyến (Zoom, Teams):",
+        options: [
+          { text: "Các công cụ này không cho phép chia sẻ màn hình hoặc tài liệu trong thời gian thực.", isCorrect: false },
+          { text: "Cần phải cài đặt các ứng dụng phức tạp để sử dụng, làm khó khăn cho người dùng mới.", isCorrect: false },
+          { text: "Thiếu sự tương tác mặt đối mặt có thể làm giảm sự gắn kết và hiểu biết giữa các thành viên.", isCorrect: true },
+          { text: "Không thể tổ chức các cuộc họp nhóm nhỏ hoặc chia nhóm trong khi họp trực tuyến.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_9", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 9. Khi giao tiếp qua mạng xã hội, điều gì dễ dẫn đến hiểu lầm?",
+        options: [
+          { text: "Người dùng thường có thể kiểm tra nguồn gốc thông tin một cách dễ dàng.", isCorrect: false },
+          { text: "Các nền tảng này luôn cung cấp các công cụ hiệu quả để kiểm soát thông tin lan truyền.", isCorrect: false },
+          { text: "Người dùng có thể dễ dàng tổ chức các cuộc trò chuyện sâu sắc và dài hạn qua nền tảng này.", isCorrect: false },
+          { text: "Nội dung thông điệp thường bị giới hạn về độ dài và thiếu ngữ cảnh, dễ gây hiểu sai ý nghĩa.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_10", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 10. Trưởng nhóm dự án từ xa muốn cải thiện sự gắn kết và hiệu quả thì nên áp dụng:",
+        options: [
+          { text: "Giảm thiểu việc sử dụng công cụ hội nghị trực tuyến và chuyển sang họp trực tiếp khi có thể.", isCorrect: false },
+          { text: "Tăng cường hội nghị trực tuyến để họp định kỳ và kết nối, dùng mạng xã hội để trao đổi nhanh không chính thức.", isCorrect: true },
+          { text: "Chỉ sử dụng mạng xã hội để giao tiếp và chia sẻ tài liệu, không họp nhóm.", isCorrect: false },
+          { text: "Yêu cầu tất cả các thành viên phải có mặt trực tiếp tại văn phòng mỗi ngày.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_11", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 11. Khi giao tiếp trong không gian mạng, nên dùng hành động nào sau đây?",
+        options: [
+          { text: "Liên tục gửi các tin nhắn vô thưởng vô phạt cho người khác.", isCorrect: false },
+          { text: "Chia sẻ thông tin cá nhân của người khác mà không được phép.", isCorrect: false },
+          { text: "Chia sẻ các thông tin về thành công của bạn bè, các tấm gương sống đẹp,...", isCorrect: true },
+          { text: "Nói xấu hoặc đe dọa người khác trên mạng xã hội.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_12", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 12. Cách làm nào dưới đây phù hợp với tính nhân văn khi giao tiếp trong không gian mạng?",
+        options: [
+          { text: "Sử dụng từ ngữ thô tục và xúc phạm để thể hiện sự bất bình.", isCorrect: false },
+          { text: "Tôn trọng ý kiến và quan điểm của người khác.", isCorrect: true },
+          { text: "Tự ý sử dụng hình ảnh của người khác.", isCorrect: false },
+          { text: "Chê bai việc làm của người khác.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_13", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 13. Trong một cuộc thảo luận trực tuyến, hành động thể hiện tốt nhất tinh thần \"tôn trọng và hỗ trợ\" là:",
+        options: [
+          { text: "Bỏ qua những bình luận tiêu cực và chỉ tập trung vào những ý kiến đồng tình với mình.", isCorrect: false },
+          { text: "Thẳng thắn chỉ trích những người đưa ra bình luận tiêu cực và kêu gọi mọi người cùng lên án.", isCorrect: false },
+          { text: "Tham gia vào cuộc tranh cãi và phản bác lại những ý kiến trái chiều một cách gay gắt.", isCorrect: false },
+          { text: "Nhẹ nhàng nhắc nhở mọi người về việc tôn trọng lẫn nhau và cố gắng đưa thảo luận trở lại trọng tâm.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_14", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 14. Một người bạn chia sẻ bài đăng sai sự thật về một vấn đề xã hội. Bạn sẽ làm gì?",
+        options: [
+          { text: "Im lặng và không đưa ra bất kỳ bình luận nào.", isCorrect: false },
+          { text: "Thích và chia sẻ bài đăng đó để ủng hộ quan điểm của bạn.", isCorrect: false },
+          { text: "Công khai chỉ trích bạn mình trên mạng xã hội vì đã chia sẻ thông tin sai lệch.", isCorrect: false },
+          { text: "Nhẹ nhàng nhắn tin riêng cho bạn, giải thích tại sao tin đó sai và cung cấp thông tin chính xác hơn.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_15", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 15. Xem clip ngắn có nội dung tố cáo chưa kiểm chứng, hành động đúng của bạn V là:",
+        options: [
+          { text: "Đồng tình với bà Z và để lại bình luận ủng hộ bà Z.", isCorrect: false },
+          { text: "Chia sẻ clip của bà Z cho bạn bè và người thân để cảnh tỉnh mọi người.", isCorrect: false },
+          { text: "Kiểm tra lại thông tin và báo cáo lại cho nền tảng mình đang sử dụng.", isCorrect: true },
+          { text: "Để lại bình luận khiếm nhã về ông Y.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_16", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 16. Khi thấy một bài viết thể hiện hành vi vu khống có thông tin sai lệch trên mạng, bạn nên làm gì?",
+        options: [
+          { text: "Chia sẻ bài viết đó với bạn bè.", isCorrect: false },
+          { text: "Bình luận để chỉ ra thông tin sai lệch.", isCorrect: false },
+          { text: "Bỏ qua và không làm gì.", isCorrect: false },
+          { text: "Báo cáo bài viết đó cho quản trị viên.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_17", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 17. Nếu bạn thấy một người bị bắt nạt trên mạng, bạn nên làm gì?",
+        options: [
+          { text: "Bỏ qua và không làm gì.", isCorrect: false },
+          { text: "Tham gia vào việc bắt nạt.", isCorrect: false },
+          { text: "Chia sẻ thông tin về việc bắt nạt đó.", isCorrect: false },
+          { text: "Ủng hộ việc bảo vệ người bị bắt nạt.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_18", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 18. Tính nhân văn của bạn An trong tình huống bài viết từ thiện thể hiện ở biểu hiện:",
+        options: [
+          { text: "Bạn An chia sẻ cảm xúc tích cực của mình về sự kiện.", isCorrect: false },
+          { text: "Bạn An chia sẻ bài viết mà không cần sự đồng ý của bạn.", isCorrect: false },
+          { text: "Bạn An đảm bảo thông tin không bị cấm trước khi chia sẻ.", isCorrect: false },
+          { text: "Bạn An kiểm chứng thông tin trước khi chia sẻ.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_19", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 19. Bạn An kiểm tra với cơ quan chức năng rồi mới gửi tiền ủng hộ thể hiện:",
+        options: [
+          { text: "Bạn An đã kiểm chứng thông tin với cơ quan chức năng và gửi tiền ủng hộ.", isCorrect: true },
+          { text: "Bạn An đã gửi tiền ủng hộ ngay sau khi đọc bài viết mà không kiểm chứng thông tin.", isCorrect: false },
+          { text: "Bạn An đã chia sẻ bài viết kêu gọi giúp đỡ lên mạng xã hội mà không kiểm chứng.", isCorrect: false },
+          { text: "Bạn An đã liên hệ với với người đăng bài và chuyển tiền ủng hộ.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_20", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 20. Khi lướt mạng xã hội thấy một nội dung rất hay, ý kiến đúng là:",
+        options: [
+          { text: "Bình luận, đồng tình với nội dung đó và chia sẻ thông tin.", isCorrect: false },
+          { text: "Nhấn like và chia sẻ thông tin.", isCorrect: false },
+          { text: "Tìm hiểu tính chính xác trước khi chia sẻ thông tin.", isCorrect: true },
+          { text: "Chia sẻ thông tin này để nhiều người cùng biết.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_21", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 21. Khi tham gia các diễn đàn trực tuyến, hành động nào là đúng?",
+        options: [
+          { text: "Phát tán tin đồn, gây hiểu lầm.", isCorrect: false },
+          { text: "Sử dụng ngôn ngữ tục tĩu, xúc phạm người khác.", isCorrect: false },
+          { text: "Viết bài tạo ra những câu chuyện gây xôn xao mạng xã hội.", isCorrect: false },
+          { text: "Sử dụng ngôn ngữ lịch sự, tôn trọng người khác.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_22", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 22. Khi tham gia một cuộc tranh luận trên mạng, hành động nào là đúng?",
+        options: [
+          { text: "Dùng mọi lời lẽ thô tục để đạt được phần thắng.", isCorrect: false },
+          { text: "Tìm cách hạ nhục đối phương.", isCorrect: false },
+          { text: "Thể hiện quan điểm của mình một cách quyết liệt.", isCorrect: false },
+          { text: "Lắng nghe ý kiến của người khác.", isCorrect: true }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_23", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 23. Hành vi thường xảy ra trong không gian mạng gây ảnh hưởng tiêu cực đến các mối quan hệ:",
+        options: [
+          { text: "Chia sẻ những khoảnh khắc vui vẻ.", isCorrect: false },
+          { text: "Tham gia các diễn đàn học tập.", isCorrect: false },
+          { text: "Bắt nạt trực tuyến.", isCorrect: true },
+          { text: "Tìm kiếm thông tin hữu ích.", isCorrect: false }
+        ]
+      },
+      {
+        id: "tin_b6_mcq_24", lesson: "b6", lessonTitle: "Bài 6: Ứng xử trong không gian mạng", type: "single",
+        question: "Câu 24. Nhận được tin nhắn từ số điện thoại lạ yêu cầu cung cấp thông tin cá nhân. Bạn sẽ làm gì?",
+        options: [
+          { text: "Cung cấp thông tin ngay lập tức.", isCorrect: false },
+          { text: "Gọi lại cho số điện thoại đó để xác minh.", isCorrect: false },
+          { text: "Chia sẻ thông tin này với bạn bè.", isCorrect: false },
+          { text: "Bỏ qua tin nhắn đó (hoặc báo cáo/chặn).", isCorrect: true }
+        ]
+      }
+    ];
+
+    // CÁC HÀM TIỆN ÍCH VÀ XỬ LÝ SỰ KIỆN GIAO DIỆN (GIỮ NGUYÊN TỪ BẢN TRƯỚC)
+    // BIẾN TRẠNG THÁI ỨNG DỤNG
+    let isShuffle = false;
+    let isStudyMode = false;
+    let isExamSubmitted = false;
+    let currentFilter = 'all';
+    let postSubmitFilter = 'all'; // 'all', 'wrong', 'correct'
+    let userAnswers = {};
+    let currentQuestions = [];
+
+    // HÀM TIỆN ÍCH TRỘN MẢNG
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // MODAL THAY THẾ CHO ALERT / CONFIRM
+    function showAppModal({ title, message, icon = '!', type = 'info', confirmText = 'Đồng ý', cancelText = null, onConfirm = null }) {
+      const modal = document.getElementById('appModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const modalIconContainer = document.getElementById('modalIconContainer');
+      const modalActions = document.getElementById('modalActions');
+
+      modalTitle.textContent = title;
+      modalMessage.innerHTML = message;
+      modalIconContainer.textContent = icon;
+
+      if (type === 'danger') {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-red-100 text-red-600 font-bold text-xl';
+      } else if (type === 'success') {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-emerald-100 text-emerald-600 font-bold text-xl';
+      } else {
+        modalIconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-teal-100 text-teal-600 font-bold text-xl';
+      }
+
+      modalActions.innerHTML = '';
+
+      if (cancelText) {
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-slate-300 text-slate-700 hover:bg-slate-100 transition';
+        cancelBtn.textContent = cancelText;
+        cancelBtn.onclick = () => {
+          modal.classList.add('hidden');
+        };
+        modalActions.appendChild(cancelBtn);
+      }
+
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-teal-600 hover:bg-teal-700 text-white transition shadow-sm';
+      confirmBtn.textContent = confirmText;
+      confirmBtn.onclick = () => {
+        modal.classList.add('hidden');
+        if (onConfirm) onConfirm();
+      };
+      modalActions.appendChild(confirmBtn);
+
+      modal.classList.remove('hidden');
+    }
+
+    // XÂY DỰNG BỘ CÂU HỎI THEO BỘ LỌC VÀ CHẾ ĐỘ ĐẢO
+    function buildQuestionSet() {
+      let filtered = rawQuizData.filter(item => {
+        if (currentFilter === 'all') return true;
+        return item.lesson === currentFilter;
+      });
+
+      if (isShuffle) {
+        filtered = shuffleArray(filtered);
+      }
+
+      currentQuestions = filtered;
+      document.getElementById('totalQuestionsCount').textContent = currentQuestions.length;
+      updateProgress();
+      renderAllQuestions();
+    }
+
+    // CẬP NHẬT TIẾN ĐỘ LÀM BÀI
+    function updateProgress() {
+      let done = 0;
+      currentQuestions.forEach(q => {
+        if (q.type === 'single') {
+          if (userAnswers[q.id] !== undefined) done++;
+        } else if (q.type === 'tf') {
+          const allFilled = q.items.every(it => userAnswers[`${q.id}_${it.label}`] !== undefined);
+          if (allFilled) done++;
+        }
+      });
+      document.getElementById('progressCount').textContent = done;
+    }
+
+    // HIỂN THỊ TẤT CẢ CÂU HỎI RA MÀN HÌNH
+    function renderAllQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      function isQuestionFullyCorrect(q) {
+        if (q.type === 'single') {
+          return userAnswers[q.id] !== undefined && q.options[userAnswers[q.id]].isCorrect;
+        } else if (q.type === 'tf') {
+          return q.items.every(it => userAnswers[`${q.id}_${it.label}`] === it.isCorrect);
+        }
+        return false;
+      }
+
+      let correctQCount = 0;
+      let wrongQCount = 0;
+      currentQuestions.forEach(q => {
+        if (isQuestionFullyCorrect(q)) {
+          correctQCount++;
+        } else {
+          wrongQCount++;
+        }
+      });
+
+      const countAllEl = document.getElementById('countFilterAll');
+      const countWrongEl = document.getElementById('countFilterWrong');
+      const countCorrectEl = document.getElementById('countFilterCorrect');
+      if (countAllEl) countAllEl.textContent = currentQuestions.length;
+      if (countWrongEl) countWrongEl.textContent = wrongQCount;
+      if (countCorrectEl) countCorrectEl.textContent = correctQCount;
+
+      let questionsToDisplay = currentQuestions;
+      if (isExamSubmitted && postSubmitFilter === 'wrong') {
+        questionsToDisplay = currentQuestions.filter(q => !isQuestionFullyCorrect(q));
+      } else if (isExamSubmitted && postSubmitFilter === 'correct') {
+        questionsToDisplay = currentQuestions.filter(q => isQuestionFullyCorrect(q));
+      }
+
+      if (questionsToDisplay.length === 0) {
+        if (isExamSubmitted && postSubmitFilter === 'wrong') {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-emerald-600 font-bold text-sm">🎉 Tuyệt vời! Bạn không làm sai câu nào cả.</div>`;
+        } else if (isExamSubmitted && postSubmitFilter === 'correct') {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-red-600 font-bold text-sm">Chưa có câu nào hoàn toàn đúng trong bộ lọc này.</div>`;
+        } else {
+          container.innerHTML = `<div class="p-8 text-center bg-white rounded-2xl shadow-sm text-slate-500 text-sm">Không tìm thấy câu hỏi phù hợp.</div>`;
+        }
+        return;
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+
+      questionsToDisplay.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.id = `card_${q.id}`;
+        
+        const isCorrect = isQuestionFullyCorrect(q);
+        let borderHighlightClass = "border-slate-200";
+        if (isExamSubmitted && !isStudyMode) {
+          borderHighlightClass = isCorrect ? "border-emerald-300 ring-1 ring-emerald-200" : "border-red-300 ring-1 ring-red-200";
+        }
+        card.className = `bg-white border ${borderHighlightClass} rounded-2xl p-5 sm:p-6 shadow-sm transition hover:shadow-md`;
+
+        const originalIndex = currentQuestions.findIndex(item => item.id === q.id);
+
+        let statusTag = '';
+        if (isExamSubmitted && !isStudyMode) {
+          statusTag = isCorrect 
+            ? `<span class="inline-flex items-center bg-emerald-100 text-emerald-800 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap">✓ Đúng</span>`
+            : `<span class="inline-flex items-center bg-red-100 text-red-700 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap">⚠️ Làm sai</span>`;
+        }
+
+        let html = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3 border-b border-slate-100 pb-2.5">
+            <div class="flex flex-wrap items-center gap-1.5 max-w-full">
+              <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 sm:py-1 rounded-md">
+                ${q.lessonTitle}
+              </span>
+              ${statusTag}
+            </div>
+            <span class="text-[11px] sm:text-xs font-bold text-slate-400 whitespace-nowrap">
+              Câu ${originalIndex + 1}/${currentQuestions.length} • ${q.type === 'single' ? '4 Lựa chọn' : 'Đúng / Sai'}
+            </span>
+          </div>
+        `;
+
+        if (q.quote) {
+          html += `
+            <div class="mb-4 bg-slate-100 border-l-4 border-teal-500 p-2.5 sm:p-3 rounded-r-xl text-xs sm:text-sm text-slate-700 italic leading-relaxed whitespace-pre-line">
+              ${q.quote}
+            </div>
+          `;
+        }
+
+        if (q.customHtml) {
+          html += q.customHtml;
+        }
+
+        html += `<p class="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">${q.question}</p>`;
+
+        const isAnswerRevealed = isExamSubmitted || isStudyMode;
+
+        // DẠNG TRẮC NGHIỆM ĐƠN (4 LỰA CHỌN)
+        if (q.type === 'single') {
+          html += `<div class="space-y-2 sm:space-y-2.5" id="opt_container_${q.id}">`;
+
+          q.options.forEach((opt, optIndex) => {
+            const isChecked = userAnswers[q.id] === optIndex;
+            let labelClass = "border-slate-200 hover:border-slate-300 hover:bg-slate-50";
+            let textClass = "text-slate-700 font-medium";
+            let badgeHtml = "";
+
+            if (isAnswerRevealed) {
+              if (opt.isCorrect) {
+                textClass = "text-emerald-800 font-bold";
+                labelClass = "border-emerald-500 bg-emerald-50/80 ring-1 ring-emerald-400";
+                badgeHtml = `<span class="self-end sm:self-center sm:ml-auto text-[10px] sm:text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✓ Đáp án đúng</span>`;
+              } else if (isChecked && !opt.isCorrect) {
+                textClass = "text-red-700 font-bold";
+                labelClass = "border-red-500 bg-red-50/80 ring-1 ring-red-400";
+                badgeHtml = `<span class="self-end sm:self-center sm:ml-auto text-[10px] sm:text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">✗ Bạn chọn sai</span>`;
+              } else {
+                textClass = "text-slate-500";
+                labelClass = "border-slate-200 bg-slate-50/50 opacity-70";
+              }
+            } else if (isChecked) {
+              labelClass = "border-teal-500 bg-teal-50 ring-2 ring-teal-300";
+              textClass = "text-teal-900 font-bold";
+            }
+
+            html += `
+              <label class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border ${labelClass} cursor-pointer transition select-none">
+                <div class="flex items-start gap-2.5 flex-1 min-w-0">
+                  <input type="radio" 
+                         name="rad_${q.id}" 
+                         value="${optIndex}" 
+                         ${isChecked ? 'checked' : ''}
+                         ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                         class="mt-0.5 sm:mt-0 w-4 h-4 shrink-0 text-teal-600 focus:ring-teal-500 cursor-pointer"
+                         onchange="selectSingleOption('${q.id}', ${optIndex})">
+                  <div class="text-xs sm:text-sm ${textClass} leading-relaxed w-full">
+                    <span class="font-extrabold mr-1 text-slate-800">${letters[optIndex]}.</span>${opt.text}
+                  </div>
+                </div>
+                ${badgeHtml}
+              </label>
+            `;
+          });
+
+          html += `</div>`;
+          html += `
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div id="msg_${q.id}" class="text-[11px] sm:text-xs font-bold"></div>
+            </div>
+          `;
+
+        // DẠNG TRẮC NGHIỆM ĐÚNG / SAI
+        } else if (q.type === 'tf') {
+          html += `<div class="space-y-2.5 sm:space-y-3" id="tf_container_${q.id}">`;
+
+          q.items.forEach(it => {
+            const userChoice = userAnswers[`${q.id}_${it.label}`];
+            let itemTextClass = "text-slate-800 font-medium";
+            let rowBorderClass = "border-slate-200 bg-slate-50/80";
+
+            const isTrueActive = userChoice === true;
+            const isFalseActive = userChoice === false;
+
+            let trueBtnClass = "bg-white text-slate-700 border-slate-300 hover:bg-slate-100";
+            let falseBtnClass = "bg-white text-slate-700 border-slate-300 hover:bg-slate-100";
+            let statusFeedback = "";
+
+            if (!isAnswerRevealed) {
+              if (isTrueActive) {
+                trueBtnClass = "bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300 font-bold";
+              }
+              if (isFalseActive) {
+                falseBtnClass = "bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300 font-bold";
+              }
+            } else {
+              if (it.isCorrect) {
+                trueBtnClass = "bg-emerald-600 text-white border-emerald-600 font-bold ring-2 ring-emerald-300";
+                if (isFalseActive) {
+                  falseBtnClass = "bg-red-500 text-white border-red-500 font-bold ring-2 ring-red-300";
+                  rowBorderClass = "border-red-300 bg-red-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-red-600 sm:ml-2 mt-0.5 sm:mt-0">(Bạn chọn Sai ✗ - Chuẩn: Đúng)</span>`;
+                } else if (isTrueActive) {
+                  rowBorderClass = "border-emerald-300 bg-emerald-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-emerald-600 sm:ml-2 mt-0.5 sm:mt-0">(Chính xác ✓)</span>`;
+                }
+              } else {
+                falseBtnClass = "bg-emerald-600 text-white border-emerald-600 font-bold ring-2 ring-emerald-300";
+                if (isTrueActive) {
+                  trueBtnClass = "bg-red-500 text-white border-red-500 font-bold ring-2 ring-red-300";
+                  rowBorderClass = "border-red-300 bg-red-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-red-600 sm:ml-2 mt-0.5 sm:mt-0">(Bạn chọn Đúng ✗ - Chuẩn: Sai)</span>`;
+                } else if (isFalseActive) {
+                  rowBorderClass = "border-emerald-300 bg-emerald-50/40";
+                  statusFeedback = `<span class="block sm:inline text-[11px] sm:text-xs font-bold text-emerald-600 sm:ml-2 mt-0.5 sm:mt-0">(Chính xác ✓)</span>`;
+                }
+              }
+            }
+
+            html += `
+              <div class="p-2.5 sm:p-3 rounded-xl border ${rowBorderClass} flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 transition" id="row_${q.id}_${it.label}">
+                <div class="text-xs sm:text-sm flex-1 ${itemTextClass} leading-relaxed">
+                  <span class="font-extrabold uppercase mr-1 text-slate-700">${it.label})</span> ${it.text}
+                  ${statusFeedback}
+                </div>
+                
+                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                  <button type="button" 
+                          onclick="selectTFOption('${q.id}', '${it.label}', true)"
+                          ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                          class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg text-xs font-bold transition border ${trueBtnClass} ${isExamSubmitted && !isStudyMode ? 'cursor-default' : ''}">
+                    Đúng
+                  </button>
+                  <button type="button" 
+                          onclick="selectTFOption('${q.id}', '${it.label}', false)"
+                          ${isExamSubmitted && !isStudyMode ? 'disabled' : ''}
+                          class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg text-xs font-bold transition border ${falseBtnClass} ${isExamSubmitted && !isStudyMode ? 'cursor-default' : ''}">
+                    Sai
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          html += `</div>`;
+          html += `
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div id="msg_${q.id}" class="text-[11px] sm:text-xs font-bold"></div>
+            </div>
+          `;
+        }
+
+        card.innerHTML = html;
+        container.appendChild(card);
+      });
+
+      if (isExamSubmitted) {
+        questionsToDisplay.forEach(q => {
+          if (q.type === 'single') checkSingleAnswer(q.id);
+          else if (q.type === 'tf') checkTFAnswer(q.id);
+        });
+      }
+    }
+
+    // CHUYỂN BỘ LỌC XEM KẾT QUẢ
+    window.setPostSubmitFilter = function(filterMode) {
+      postSubmitFilter = filterMode;
+
+      const btnAll = document.getElementById('filterAllQuestionsBtn');
+      const btnWrong = document.getElementById('filterWrongQuestionsBtn');
+      const btnCorrect = document.getElementById('filterCorrectQuestionsBtn');
+
+      const activeClass = "bg-slate-800 text-white";
+      const inactiveAll = "text-slate-700 hover:bg-slate-100";
+      const inactiveWrong = "text-red-600 hover:bg-red-50";
+      const inactiveCorrect = "text-emerald-600 hover:bg-emerald-50";
+
+      btnAll.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'all' ? activeClass : inactiveAll}`;
+      btnWrong.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'wrong' ? activeClass : inactiveWrong}`;
+      btnCorrect.className = `px-3 py-1 font-bold rounded-md transition ${filterMode === 'correct' ? activeClass : inactiveCorrect}`;
+
+      renderAllQuestions();
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    };
+
+    // XỬ LÝ CHỌN CÂU TRẮC NGHIỆM ĐƠN (Đã fix render tối ưu)
+    window.selectSingleOption = function(qId, optIdx) {
+      if (isExamSubmitted && !isStudyMode) return;
+      userAnswers[qId] = optIdx;
+      updateProgress();
+      
+      const card = document.getElementById(`card_${qId}`);
+      if (!card) return;
+
+      const labels = card.querySelectorAll('label');
+      labels.forEach((lbl, idx) => {
+        const input = lbl.querySelector('input');
+        if (idx === optIdx) {
+          input.checked = true;
+          lbl.className = "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-teal-500 bg-teal-50 ring-2 ring-teal-300 cursor-pointer transition select-none";
+          lbl.querySelector('.text-xs').className = "text-xs sm:text-sm text-teal-900 font-bold leading-relaxed w-full";
+        } else {
+          input.checked = false;
+          lbl.className = "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 cursor-pointer transition select-none";
+          lbl.querySelector('.text-xs').className = "text-xs sm:text-sm text-slate-700 font-medium leading-relaxed w-full";
+        }
+      });
+      
+      if (isStudyMode) {
+          checkSingleAnswer(qId);
+      }
+    };
+
+    // XỬ LÝ CHỌN CÂU ĐÚNG / SAI (Đã fix render tối ưu)
+    window.selectTFOption = function(qId, label, val) {
+      if (isExamSubmitted && !isStudyMode) return;
+      userAnswers[`${qId}_${label}`] = val;
+      updateProgress();
+
+      const row = document.getElementById(`row_${qId}_${label}`);
+      if (row) {
+        const btns = row.querySelectorAll('button');
+        if (val === true) {
+          btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
+          btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+        } else {
+          btns[0].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-white text-slate-700 border-slate-300 hover:bg-slate-100';
+          btns[1].className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition border bg-teal-500 text-white border-teal-600 shadow-sm ring-2 ring-teal-300';
+        }
+      }
+      if (isStudyMode) {
+          // Re-render the whole question to show correct/incorrect feedback
+          renderAllQuestions();
+      }
+    };
+
+    // CHẤM ĐIỂM CÂU ĐƠN SAU KHI NỘP BÀI
+    function checkSingleAnswer(qId) {
+      const q = currentQuestions.find(item => item.id === qId);
+      if (!q) return;
+
+      const chosenIdx = userAnswers[qId];
+      const msg = document.getElementById(`msg_${qId}`);
+      if (!msg) return;
+
+      if (chosenIdx === undefined) {
+        msg.className = "text-xs font-bold text-amber-600";
+        msg.textContent = "⚠️ Bạn chưa chọn câu trả lời này.";
+      } else if (q.options[chosenIdx].isCorrect) {
+        msg.className = "text-xs font-bold text-emerald-600";
+        msg.textContent = "✓ Chính xác!";
+      } else {
+        msg.className = "text-xs font-bold text-red-600";
+        msg.textContent = "✗ Chưa chính xác! Vui lòng đối chiếu với đáp án Xanh lá.";
+      }
+    }
+
+    // CHẤM ĐIỂM CÂU ĐÚNG / SAI SAU KHI NỘP BÀI
+    function checkTFAnswer(qId) {
+      const q = currentQuestions.find(item => item.id === qId);
+      if (!q) return;
+
+      const msg = document.getElementById(`msg_${qId}`);
+      if (!msg) return;
+
+      let correctCount = 0;
+      let unanswered = 0;
+
+      q.items.forEach(it => {
+        const userChoice = userAnswers[`${qId}_${it.label}`];
+        if (userChoice === undefined) {
+          unanswered++;
+        } else if (userChoice === it.isCorrect) {
+          correctCount++;
+        }
+      });
+
+      if (unanswered > 0) {
+        msg.className = "text-xs font-bold text-amber-600";
+        msg.textContent = `⚠️ Bạn còn ${unanswered} ý chưa chọn.`;
+      } else if (correctCount === 4) {
+        msg.className = "text-xs font-bold text-emerald-600";
+        msg.textContent = `✓ Xuất sắc! Bạn làm đúng 4/4 ý.`;
+      } else {
+        msg.className = "text-xs font-bold text-red-600";
+        msg.textContent = `✗ Bạn làm đúng ${correctCount}/4 ý. Hãy đối chiếu với đáp án chuẩn (Xanh lá).`;
+      }
+    }
+
+    // GẮN CÁC SỰ KIỆN KHI TRANG TẢI XONG
+    window.addEventListener('DOMContentLoaded', () => {
+      const startScreen = document.getElementById('startScreen');
+      const examScreen = document.getElementById('examScreen');
+      const startExamBtn = document.getElementById('startExamBtn');
+      const backToConfigBtn = document.getElementById('backToConfigBtn');
+      const submitExamBtn = document.getElementById('submitExamBtn');
+      const resetCurrentExamBtn = document.getElementById('resetCurrentExamBtn');
+
+      startExamBtn.addEventListener('click', () => {
+        const lessonVal = document.getElementById('selectedLessonValue').value || 'all';
+        const shuffleVal = document.querySelector('input[name="shuffleOption"]:checked').value;
+        const modeVal = document.querySelector('input[name="modeOption"]:checked').value;
+
+        currentFilter = lessonVal;
+        postSubmitFilter = 'all';
+        isShuffle = (shuffleVal === 'yes');
+        isStudyMode = (modeVal === 'study');
+        isExamSubmitted = false;
+        userAnswers = {};
+
+        document.getElementById('postSubmitFilterBar').classList.add('hidden');
+
+        const currentTitle = document.getElementById('selectedLessonTitle').textContent.trim();
+        document.getElementById('currentLessonBadge').textContent = currentTitle;
+
+        const statusText = document.getElementById('examStatusText');
+        if (isStudyMode) {
+          statusText.textContent = "Chế độ tra cứu (Hiện sẵn đáp án)";
+          submitExamBtn.classList.add('hidden');
+        } else {
+          statusText.textContent = "Đang làm bài (Nộp bài để chấm điểm)";
+          submitExamBtn.classList.remove('hidden');
+        }
+
+        startScreen.classList.add('hidden');
+        examScreen.classList.remove('hidden');
+
+        buildQuestionSet();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      const dropdownBtn = document.getElementById('lessonDropdownBtn');
+      const dropdownMenu = document.getElementById('lessonDropdownMenu');
+      const dropdownArrow = document.getElementById('dropdownArrow');
+      const lessonOptions = document.querySelectorAll('.lesson-option');
+      const hiddenInput = document.getElementById('selectedLessonValue');
+
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !dropdownMenu.classList.contains('hidden');
+        if (isOpen) {
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        } else {
+          dropdownMenu.classList.remove('hidden');
+          dropdownArrow.classList.add('rotate-180');
+        }
+      });
+
+      lessonOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const val = opt.getAttribute('data-value');
+          const title = opt.getAttribute('data-title');
+          const desc = opt.getAttribute('data-desc');
+          const icon = opt.getAttribute('data-icon');
+
+          hiddenInput.value = val;
+          document.getElementById('selectedLessonIcon').textContent = icon;
+          document.getElementById('selectedLessonTitle').textContent = title;
+          document.getElementById('selectedLessonDesc').textContent = desc;
+
+          lessonOptions.forEach(o => {
+            o.classList.remove('bg-teal-50/60');
+            const check = o.querySelector('.checkmark');
+            if (check) check.classList.add('hidden');
+          });
+          opt.classList.add('bg-teal-50/60');
+          const activeCheck = opt.querySelector('.checkmark');
+          if (activeCheck) activeCheck.classList.remove('hidden');
+
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        }
+      });
+
+      backToConfigBtn.addEventListener('click', () => {
+        if (isExamSubmitted || isStudyMode) {
+          examScreen.classList.add('hidden');
+          startScreen.classList.remove('hidden');
+          document.getElementById('postSubmitFilterBar').classList.add('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        showAppModal({
+          title: 'Quay lại màn hình chính',
+          message: 'Bạn đang làm dở bài thi. Bạn có muốn thoát ra màn hình tùy chọn không?',
+          icon: '?',
+          type: 'info',
+          confirmText: 'Thoát ra',
+          cancelText: 'Làm tiếp',
+          onConfirm: () => {
+            examScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            document.getElementById('postSubmitFilterBar').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+
+      resetCurrentExamBtn.addEventListener('click', () => {
+        showAppModal({
+          title: 'Xác nhận làm lại',
+          message: 'Bạn có chắc chắn muốn xóa toàn bộ kết quả đã chọn để thi lại không?',
+          icon: '?',
+          type: 'danger',
+          confirmText: 'Làm lại ngay',
+          cancelText: 'Hủy',
+          onConfirm: () => {
+            userAnswers = {};
+            isExamSubmitted = false;
+            postSubmitFilter = 'all';
+            document.getElementById('postSubmitFilterBar').classList.add('hidden');
+            document.getElementById('examStatusText').textContent = "Đang làm bài (Nộp bài để chấm điểm)";
+            submitExamBtn.classList.remove('hidden');
+            buildQuestionSet();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+
+      submitExamBtn.addEventListener('click', () => {
+        if (isExamSubmitted) {
+          showAppModal({
+            title: 'Thông báo',
+            message: 'Bài thi này đã được nộp. Bạn có thể sử dụng các nút lọc ở thanh trên để xem riêng các câu sai.',
+            icon: 'i',
+            type: 'info',
+            confirmText: 'Đã hiểu'
+          });
+          return;
+        }
+
+        let uncompleted = 0;
+        currentQuestions.forEach(q => {
+          if (q.type === 'single') {
+            if (userAnswers[q.id] === undefined) uncompleted++;
+          } else if (q.type === 'tf') {
+            const hasEmpty = q.items.some(it => userAnswers[`${q.id}_${it.label}`] === undefined);
+            if (hasEmpty) uncompleted++;
+          }
+        });
+
+        const performSubmit = () => {
+          isExamSubmitted = true;
+          document.getElementById('examStatusText').textContent = "Đã nộp bài (Hiển thị đáp án chi tiết)";
+          
+          document.getElementById('postSubmitFilterBar').classList.remove('hidden');
+
+          let totalUnits = 0;
+          let correctUnits = 0;
+          let wrongQuestionCount = 0;
+
+          currentQuestions.forEach(q => {
+            let isQCorrect = false;
+            if (q.type === 'single') {
+              totalUnits += 1;
+              if (userAnswers[q.id] !== undefined && q.options[userAnswers[q.id]].isCorrect) {
+                correctUnits += 1;
+                isQCorrect = true;
+              }
+            } else if (q.type === 'tf') {
+              totalUnits += 4;
+              let currentQCorrectItems = 0;
+              q.items.forEach(it => {
+                if (userAnswers[`${q.id}_${it.label}`] === it.isCorrect) {
+                  correctUnits += 1;
+                  currentQCorrectItems++;
+                }
+              });
+              if (currentQCorrectItems === 4) isQCorrect = true;
+            }
+
+            if (!isQCorrect) wrongQuestionCount++;
+          });
+
+          renderAllQuestions();
+
+          const percent = totalUnits > 0 ? Math.round((correctUnits / totalUnits) * 100) : 0;
+          const noticeEl = document.getElementById('wrongNoticeText');
+          if (noticeEl) {
+            noticeEl.innerHTML = wrongQuestionCount > 0 
+              ? `Có <strong class="text-red-600">${wrongQuestionCount} câu</strong> cần xem lại.`
+              : `<strong class="text-emerald-600">Làm đúng 100% câu hỏi!</strong>`;
+          }
+
+          if (wrongQuestionCount > 0) {
+            showAppModal({
+              title: 'Kết quả bài thi',
+              message: `Bạn làm đúng <strong>${correctUnits}/${totalUnits}</strong> ý (đạt <strong>${percent}%</strong>).<br>Có <strong>${wrongQuestionCount} câu</strong> bạn làm sai hoặc chưa hoàn thiện.<br><br>Bạn có muốn <strong>xem riêng các câu sai</strong> để rút kinh nghiệm ngay không?`,
+              icon: '⚠️',
+              type: 'info',
+              confirmText: 'Xem các câu sai',
+              cancelText: 'Xem toàn bộ đề',
+              onConfirm: () => {
+                setPostSubmitFilter('wrong');
+              }
+            });
+          } else {
+            showAppModal({
+              title: 'Chúc mừng!',
+              message: `Bạn đạt điểm tuyệt đối <strong>${correctUnits}/${totalUnits}</strong> ý (tỉ lệ <strong>100%</strong>)!<br><br>Tất cả đáp án đều hoàn toàn chính xác (Xanh lá).`,
+              icon: '✓',
+              type: 'success',
+              confirmText: 'Xem chi tiết đề'
+            });
+          }
+        };
+
+        if (uncompleted > 0) {
+          showAppModal({
+            title: 'Chưa làm xong bài!',
+            message: `Bạn vẫn còn <strong>${uncompleted} câu</strong> chưa hoàn tất. Bạn có chắc chắn muốn nộp bài luôn không?`,
+            icon: '!',
+            type: 'danger',
+            confirmText: 'Nộp bài luôn',
+            cancelText: 'Làm tiếp',
+            onConfirm: performSubmit
+          });
+        } else {
+          performSubmit();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
